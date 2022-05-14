@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.18.0",
+    "express-handlebars": "^6.0.5",
     "mysql": "2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }
