@@ -1,7 +1,8 @@
+{{>header}}
 
-
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
+
     <!-- Navbar -->
     {{>nav}}
     <!-- /.navbar -->
@@ -35,9 +36,9 @@
             <div class="col-12">
 
               <div class="card-body">
-                <form>
                   <div class="row">
-                    <div class="col-md-8">
+                <form class="col-md-7">
+                    <div class="col-md-12">
                       <div class="card card-primary">
                         <div class="card-header">
                           <h3 class="card-title">Datos del CheckIn</h3>
@@ -45,11 +46,14 @@
 
                         <div class="card-body">
                           <div class="row">
-                            <div class="form-group col-6">
-                              <label for="CodigoAdmision">Código Admisión</label>
-                              <input name="CodigoAdmision" pattern="" title="Codigo de Admision" class="form-control" type="text">
+                            <div class="form-group col-12">
+                              <label for="TrabajoSolicitado">Trabajo Solicitado</label>
+                              <input name="TrabajoSolicitado" pattern="" title="Trabajo Solicitado" class="form-control"
+                                type="text">
                             </div>
-  
+                          </div>
+
+                          <div class="row">
                             <div class="form-group col-6">
                               <label for="Placa">Placa</label>
                               <div class="input-group">
@@ -71,41 +75,12 @@
                                 </select>
                               </div>
                             </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="form-group col-6">
-                              <label>Fecha de Ingreso</label>
-                                <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" name="FechaIngreso" data-target="#reservationdatetime">
-                                    <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-6">
-                              <label>Fecha de Salida</label>
-                                <div class="input-group date" id="data2" data-target-input="nearest">
-                                    <input name=  "FechaSalida" type="text" class="form-control datetimepicker-input" data-target="#data2">
-                                    <div class="input-group-append" data-target="#data2" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                          </div>
-
-                          <div class="row">
-                              <div class="form-group col-6">
-                              <label for="TrabajoSolicitado">Trabajo Solicitado</label>
-                              <input name="TrabajoSolicitado" pattern="" title="Trabajo Solicitado" class="form-control" type="text">
-                            </div>
                             <div class="form-group col-6">
                               <label for="mecanico">Mecanico</label>
                               <div class="input-group">
                                 <div class="input-group-prepend">
-                                  <a href="/vehiculo" type="button" class="btn btn-outline-info">
+                                  <a href="/mecanico
+                                  " type="button" class="btn btn-outline-info">
                                     <i class="fa fa-plus nav-icon"></i>
                                   </a>
                                 </div>
@@ -124,506 +99,612 @@
                             </div>
 
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card card-primary">
+                          <div class="row">
+                            <div class="form-group col-6">
+                              <label>Fecha de Ingreso</label>
+                              <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" name="FechaIngreso"
+                                  data-target="#reservationdatetime">
+                                <div class="input-group-append" data-target="#reservationdatetime"
+                                  data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                              </div>
+                            </div>
 
-                        <div class="card-header">
-                          <h3 class="card-title">Acciones</h3>
-                        </div>
+                            <div class="form-group col-6">
+                              <label>Fecha de Salida</label>
+                              <div class="input-group date" id="data2" data-target-input="nearest">
+                                <input name="FechaSalida" type="text" class="form-control datetimepicker-input"
+                                  data-target="#data2">
+                                <div class="input-group-append" data-target="#data2" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                              </div>
+                            </div>
 
-                        <div class="card-body pb-2 pt-3 ">
-                          <div class="form-group">
-                            <button type="submit" class="btn btn-primary"> <i class="fa fa-plus nav-icon pr-2"></i>
-                              Agregar</button>
-                            <button type="button" class="btn btn-default   float-right"> <i
-                                class="fa fa-trash nav-icon pr-2"></i>Limpiar</button>
+                            <textarea name="accesorios" id="idaccesorios" cols="30" rows="10" class="d-none">
+
+                            </textarea>
+
+                          </div>
+                        </div>
+                        <div class="card-footer">
+                          <div class="card-body">
+                            <div class="form-group">
+
+                              <button type="submit" class="btn btn-primary float-right">
+                                <i class="fa fa-plus nav-icon pr-2"></i>Agregar</button>
+                              <button type="button" class="btn btn-default float-right mr-3">
+                                <i class="fa fa-trash nav-icon pr-2"></i>Limpiar</button>
+                            </div>
                           </div>
                         </div>
                       </div>
-
-
-                      <div class="card card-secondary">
-                        <div class="card-header">
-                          <h4 class="card-title">Formulario de Ordenes</h4>
-                        </div>
-                        <div class="card-body p-3">
-                          <a href="/vehiculo" type="button" class="btn btn-outline-secondary">
-                            Ir al formulario de Ordenes<i class="fa fa-angle-double-right float-right pl-2 nav-icon"></i>
-                          </a>
-                        </div>
-                      </div>
-
-
                     </div>
-
-                  </div>
                 </form>
-              </div>
+                <div class="col-md-5">
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Accesorios</h3>
+                    </div>
+                      <div class="card-body pb-2">
+                        <form>
+                         <div class="row">
+                          <div class="form-group">
+                            <label for="Accesorio">Accesorio</label>
+                            <input name="Accesorio" pattern="" title="Accesorio" class="form-control" type="text">
+                          </div>
+                          <div class="form-group col-5">
+                            <label for="estado">Estado</label>
+                            <div class="input-group">
+                              <select name="estado" class="form-control" title="Estado" id="Estado">
+                                <option value="1">
+                                  <span>Usado</span>
+                                </option>
+                                <option value="2">
+                                  <span>Nuevo</span>
+                                </option>
+                                <option value="3">
+                                  <span>Bueno</span>
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group mt-4 p-2">
+                            <button class="form-control btn btn-primary">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        </form>
 
-              <div class="card">
-                <div class="card-header">
-                  <!-- Consulta de los Modelos INNER JOIN Marcas -->
-                  <h3 class="card-title">Registro de CheckIn</h3>
+                  <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive mt-3 p-0" style="height:245px">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Task</th>
+                            <th style="width: 40px">Label</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1.</td>
+                            <td>Update software</td>
+                            <td><span class="badge bg-danger">55%</span></td>
+                          </tr>
+                          <tr>
+                            <tr>
+                            <td>1.</td>
+                            <td>Update software</td>
+                            <td><span class="badge bg-danger">55%</span></td>
+                          </tr>
+                          <tr>
+                            <td>2.</td>
+                            <td>Clean database</td>
+                            
+                            <td><span class="badge bg-warning">70%</span></td>
+                          </tr>
+                          <tr>
+                            <td>3.</td>
+                            <td>Cron job running</td>
+                          
+                            <td><span class="badge bg-primary">30%</span></td>
+                          </tr>
+                          <tr>
+                            <td>4.</td>
+                            <td>Fix and squish bugs</td>
+                          
+                            <td><span class="badge bg-success">90%</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+              <!-- /.card-body -->
+                  </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="example2" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th>Codigo Admisión</th>
-                        <th>Placa</th>
-                        <th>Fecha de Ingreso</th>
-                        <th>Fecha de Salida</th>
-                        <th>Trabajo Solicitado</th>
-                        <th>Id de Mecanico</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.5
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 6
-                        </td>
-                        <td>Win 98+</td>
-                        <td>6</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet Explorer 7</td>
-                        <td>Win XP SP2+</td>
-                        <td>7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>AOL browser (AOL desktop)</td>
-                        <td>Win XP</td>
-                        <td>6</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 1.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 1.5</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 2.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 3.0</td>
-                        <td>Win 2k+ / OSX.3+</td>
-                        <td>1.9</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Camino 1.0</td>
-                        <td>OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Camino 1.5</td>
-                        <td>OSX.3+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Netscape 7.2</td>
-                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Netscape Browser 8</td>
-                        <td>Win 98SE+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Netscape Navigator 9</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.1</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.2</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.2</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.3</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.3</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.4</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.4</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.5</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.6</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.6</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.7</td>
-                        <td>Win 98+ / OSX.1+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.8</td>
-                        <td>Win 98+ / OSX.1+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Seamonkey 1.1</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Epiphany 2.20</td>
-                        <td>Gnome</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 1.2</td>
-                        <td>OSX.3</td>
-                        <td>125.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 1.3</td>
-                        <td>OSX.3</td>
-                        <td>312.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 2.0</td>
-                        <td>OSX.4+</td>
-                        <td>419.3</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 3.0</td>
-                        <td>OSX.4+</td>
-                        <td>522.1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>OmniWeb 5.5</td>
-                        <td>OSX.4+</td>
-                        <td>420</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>iPod Touch / iPhone</td>
-                        <td>iPod</td>
-                        <td>420.1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>S60</td>
-                        <td>S60</td>
-                        <td>413</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 7.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 7.5</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 8.0</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 8.5</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 9.0</td>
-                        <td>Win 95+ / OSX.3+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 9.2</td>
-                        <td>Win 88+ / OSX.3+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 9.5</td>
-                        <td>Win 88+ / OSX.3+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera for Wii</td>
-                        <td>Wii</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Nokia N800</td>
-                        <td>N800</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Nintendo DS browser</td>
-                        <td>Nintendo DS</td>
-                        <td>8.5</td>
-                        <td>C/A<sup>1</sup></td>
-                      </tr>
-                      <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.1</td>
-                        <td>KDE 3.1</td>
-                        <td>3.1</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.3</td>
-                        <td>KDE 3.3</td>
-                        <td>3.3</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.5</td>
-                        <td>KDE 3.5</td>
-                        <td>3.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 4.5</td>
-                        <td>Mac OS 8-9</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.1</td>
-                        <td>Mac OS 7.6-9</td>
-                        <td>1</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.2</td>
-                        <td>Mac OS 8-X</td>
-                        <td>1</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>NetFront 3.1</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>NetFront 3.4</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>Dillo 0.8</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>Links</td>
-                        <td>Text only</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>Lynx</td>
-                        <td>Text only</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>IE Mobile</td>
-                        <td>Windows Mobile 6</td>
-                        <td>-</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>PSP browser</td>
-                        <td>PSP</td>
-                        <td>-</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Other browsers</td>
-                        <td>All others</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>U</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
             </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
+          </div>  
         </div>
-        <!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
- 
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+
+    <div class="card col-12">
+      <div class="card-header">
+        <!-- Consulta de los Modelos INNER JOIN Marcas -->
+        <h3 class="card-title">Registro de CheckIn</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <table id="example2" class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Codigo Admisión</th>
+              <th>Placa</th>
+              <th>Fecha de Ingreso</th>
+              <th>Fecha de Salida</th>
+              <th>Trabajo Solicitado</th>
+              <th>Id de Mecanico</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 4.0
+              </td>
+              <td>Win 95+</td>
+              <td> 4</td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 5.0
+              </td>
+              <td>Win 95+</td>
+              <td>5</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 5.5
+              </td>
+              <td>Win 95+</td>
+              <td>5.5</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 6
+              </td>
+              <td>Win 98+</td>
+              <td>6</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>Internet Explorer 7</td>
+              <td>Win XP SP2+</td>
+              <td>7</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>AOL browser (AOL desktop)</td>
+              <td>Win XP</td>
+              <td>6</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Firefox 1.0</td>
+              <td>Win 98+ / OSX.2+</td>
+              <td>1.7</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Firefox 1.5</td>
+              <td>Win 98+ / OSX.2+</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Firefox 2.0</td>
+              <td>Win 98+ / OSX.2+</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Firefox 3.0</td>
+              <td>Win 2k+ / OSX.3+</td>
+              <td>1.9</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Camino 1.0</td>
+              <td>OSX.2+</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Camino 1.5</td>
+              <td>OSX.3+</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Netscape 7.2</td>
+              <td>Win 95+ / Mac OS 8.6-9.2</td>
+              <td>1.7</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Netscape Browser 8</td>
+              <td>Win 98SE+</td>
+              <td>1.7</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Netscape Navigator 9</td>
+              <td>Win 98+ / OSX.2+</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.0</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>1</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.1</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>1.1</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.2</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>1.2</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.3</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>1.3</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.4</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>1.4</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.5</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>1.5</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.6</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>1.6</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.7</td>
+              <td>Win 98+ / OSX.1+</td>
+              <td>1.7</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Mozilla 1.8</td>
+              <td>Win 98+ / OSX.1+</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Seamonkey 1.1</td>
+              <td>Win 98+ / OSX.2+</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Gecko</td>
+              <td>Epiphany 2.20</td>
+              <td>Gnome</td>
+              <td>1.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Webkit</td>
+              <td>Safari 1.2</td>
+              <td>OSX.3</td>
+              <td>125.5</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Webkit</td>
+              <td>Safari 1.3</td>
+              <td>OSX.3</td>
+              <td>312.8</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Webkit</td>
+              <td>Safari 2.0</td>
+              <td>OSX.4+</td>
+              <td>419.3</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Webkit</td>
+              <td>Safari 3.0</td>
+              <td>OSX.4+</td>
+              <td>522.1</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Webkit</td>
+              <td>OmniWeb 5.5</td>
+              <td>OSX.4+</td>
+              <td>420</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Webkit</td>
+              <td>iPod Touch / iPhone</td>
+              <td>iPod</td>
+              <td>420.1</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Webkit</td>
+              <td>S60</td>
+              <td>S60</td>
+              <td>413</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera 7.0</td>
+              <td>Win 95+ / OSX.1+</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera 7.5</td>
+              <td>Win 95+ / OSX.2+</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera 8.0</td>
+              <td>Win 95+ / OSX.2+</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera 8.5</td>
+              <td>Win 95+ / OSX.2+</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera 9.0</td>
+              <td>Win 95+ / OSX.3+</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera 9.2</td>
+              <td>Win 88+ / OSX.3+</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera 9.5</td>
+              <td>Win 88+ / OSX.3+</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Opera for Wii</td>
+              <td>Wii</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Nokia N800</td>
+              <td>N800</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Presto</td>
+              <td>Nintendo DS browser</td>
+              <td>Nintendo DS</td>
+              <td>8.5</td>
+              <td>C/A<sup>1</sup></td>
+            </tr>
+            <tr>
+              <td>KHTML</td>
+              <td>Konqureror 3.1</td>
+              <td>KDE 3.1</td>
+              <td>3.1</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>KHTML</td>
+              <td>Konqureror 3.3</td>
+              <td>KDE 3.3</td>
+              <td>3.3</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>KHTML</td>
+              <td>Konqureror 3.5</td>
+              <td>KDE 3.5</td>
+              <td>3.5</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Tasman</td>
+              <td>Internet Explorer 4.5</td>
+              <td>Mac OS 8-9</td>
+              <td>-</td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>Tasman</td>
+              <td>Internet Explorer 5.1</td>
+              <td>Mac OS 7.6-9</td>
+              <td>1</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Tasman</td>
+              <td>Internet Explorer 5.2</td>
+              <td>Mac OS 8-X</td>
+              <td>1</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>NetFront 3.1</td>
+              <td>Embedded devices</td>
+              <td>-</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>NetFront 3.4</td>
+              <td>Embedded devices</td>
+              <td>-</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>Dillo 0.8</td>
+              <td>Embedded devices</td>
+              <td>-</td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>Links</td>
+              <td>Text only</td>
+              <td>-</td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>Lynx</td>
+              <td>Text only</td>
+              <td>-</td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>IE Mobile</td>
+              <td>Windows Mobile 6</td>
+              <td>-</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Misc</td>
+              <td>PSP browser</td>
+              <td>PSP</td>
+              <td>-</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>Other browsers</td>
+              <td>All others</td>
+              <td>-</td>
+              <td>-</td>
+              <td>U</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Rendering engine</th>
+              <th>Browser</th>
+              <th>Platform(s)</th>
+              <th>Engine version</th>
+              <th>CSS grade</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2022 <a href="#">Taller Hno Flores &REG;</a>.</strong>
+    Todos los derechos reservados
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
+
 
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -641,4 +722,178 @@
   <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
 
 
-   {{>footer}}
+
+
+
+  <!-- date-range-picker -->
+
+  <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Select2 -->
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+  <!-- Bootstrap4 Duallistbox -->
+  <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+  <!-- InputMask -->
+  <script src="../../plugins/moment/moment.min.js"></script>
+  <script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- bootstrap color picker -->
+  <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- Bootstrap Switch -->
+  <script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+  <!-- BS-Stepper -->
+  <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+  <!-- dropzonejs -->
+  <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+
+  <!-- Page specific script -->
+  <script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+
+      //Datemask dd/mm/yyyy
+      $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+      //Datemask2 mm/dd/yyyy
+      $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+      //Money Euro
+      $('[data-mask]').inputmask()
+
+      //Date picker
+      $('#reservationdate').datetimepicker({
+        format: 'L'
+      });
+
+      //Date and time picker
+      $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+      $('#data2').datetimepicker({ icons: { time: 'far fa-clock' } });
+      //Date range picker
+      $('#reservation').daterangepicker()
+      //Date range picker with time picker
+      $('#reservationtime').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        locale: {
+          format: 'MM/DD/YYYY hh:mm A'
+        }
+      })
+      //Date range as a button
+      $('#daterange-btn').daterangepicker(
+        {
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment()
+        },
+        function (start, end) {
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        }
+      )
+
+      //Timepicker
+      $('#timepicker').datetimepicker({
+        format: 'LT'
+      })
+
+      //Bootstrap Duallistbox
+      $('.duallistbox').bootstrapDualListbox()
+
+      //Colorpicker
+      $('.my-colorpicker1').colorpicker()
+      //color picker with addon
+      $('.my-colorpicker2').colorpicker()
+
+      $('.my-colorpicker2').on('colorpickerChange', function (event) {
+        $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+      })
+
+      $("input[data-bootstrap-switch]").each(function () {
+        $(this).bootstrapSwitch('state', $(this).prop('checked'));
+      })
+
+    })
+    // BS-Stepper Init
+    document.addEventListener('DOMContentLoaded', function () {
+      window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+    })
+
+    // DropzoneJS Demo Code Start
+    Dropzone.autoDiscover = false
+
+    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+    var previewNode = document.querySelector("#template")
+    previewNode.id = ""
+    var previewTemplate = previewNode.parentNode.innerHTML
+    previewNode.parentNode.removeChild(previewNode)
+
+    var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+      url: "/target-url", // Set the url
+      thumbnailWidth: 80,
+      thumbnailHeight: 80,
+      parallelUploads: 20,
+      previewTemplate: previewTemplate,
+      autoQueue: false, // Make sure the files aren't queued until manually added
+      previewsContainer: "#previews", // Define the container to display the previews
+      clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+    })
+
+    myDropzone.on("addedfile", function (file) {
+      // Hookup the start button
+      file.previewElement.querySelector(".start").onclick = function () { myDropzone.enqueueFile(file) }
+    })
+
+    // Update the total progress bar
+    myDropzone.on("totaluploadprogress", function (progress) {
+      document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+    })
+
+    myDropzone.on("sending", function (file) {
+      // Show the total progress bar when upload starts
+      document.querySelector("#total-progress").style.opacity = "1"
+      // And disable the start button
+      file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+    })
+
+    // Hide the total progress bar when nothing's uploading anymore
+    myDropzone.on("queuecomplete", function (progress) {
+      document.querySelector("#total-progress").style.opacity = "0"
+    })
+
+    // Setup the buttons for all transfers
+    // The "add files" button doesn't need to be setup because the config
+    // `clickable` has already been specified.
+    document.querySelector("#actions .start").onclick = function () {
+      myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+    }
+    document.querySelector("#actions .cancel").onclick = function () {
+      myDropzone.removeAllFiles(true)
+    }
+    // DropzoneJS Demo Code End
+  </script>
+
+</body>
+
+</html>

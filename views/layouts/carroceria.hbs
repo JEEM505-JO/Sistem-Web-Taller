@@ -1,32 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{{>header}}
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vehiculo | Modelo</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-</head>
-
-<body class="hold-transition sidebar-mini">
-  <div class="wrapper">
     <!-- Navbar -->
-    {{>nav_header}}
+    {{>nav}}
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    {{>sidebar}}
+    {{>aside}}
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -35,12 +17,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Modelo</h1>
+              <h1>Carrocería</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="./">Vehículo</a></li>
-                <li class="breadcrumb-item active">Modelo</li>
+                <li class="breadcrumb-item active">Carrocería</li>
               </ol>
             </div>
           </div>
@@ -59,16 +41,16 @@
                     <div class="col-md-8">
                       <div class="card card-primary">
                         <div class="card-header">
-                          <h3 class="card-title">Datos del Modelo de Vehículo</h3>
+                          <h3 class="card-title">Datos de la Carrocería y Clase de Vehículo</h3>
                         </div>
 
                         <div class="card-body">
                           <div class="form-group">
-                            <label for="Modelo">Modelo</label>
-                            <input name="Modelo" pattern="" title="Modelo" class="form-control" type="text">
+                            <label for="Carroceria">Carrocería</label>
+                            <input name="Carroceria" pattern="" title="" class="form-control" type="text">
                           </div>
                           <div class="form-group">
-                            <label for="Marca">Marca</label>
+                            <label for="clase">Clase</label>
                             <div class="input-group">
                               <div class="input-group-prepend">
                                 <button type="button" class="btn btn-warning dropdown-toggle" id="btn_Action" data-toggle="dropdown" aria-expanded="true">
@@ -80,11 +62,11 @@
                                   <li class="dropdown-item"><a id="btn_register" type="button">Registradas</a></li>
                                 </ul>
                               </div>
-                              <input name="Marca" pattern="" title="Marca" id="Marca_input" class="form-control" type="text">
-                              <select name="motor" title="Seleccionar Marca" class="form-control d-none" id="Marca_select">
-                                <option value="1">1. <span>marca</span></option>
-                                <option value="2">2. <span>marca</span></option>
-                                <option value="3">3. <span>marca</span></option>
+                              <input name="clase" pattern="" title="" id="Marca_input" class="form-control" type="text">
+                              <select name="clase" class="form-control d-none" id="Marca_select">
+                                <option value="1">1. <span>clase de vehiculo</span></option>
+                                <option value="2">2. <span>clase de vehiculo</span></option>
+                                <option value="3">3. <span>clase de vehiculo</span></option>
                               </select>
                             </div>
                           </div>
@@ -127,23 +109,20 @@
                 </form>
               </div>
 
-
-
-
               <div class="card">
                 <div class="card-header">
                   <!-- Consulta de los Modelos INNER JOIN Marcas -->
-                  <h3 class="card-title">Registro de los Modelos y Marcas</h3>
+                  <h3 class="card-title">Registro de Tipos de Carrocería y Clases de Vehiculos</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Id Modelo</th>
-                        <th>Modelo</th>
-                        <th>Id Marca</th>
-                        <th>Marca</th>
+                        <th>Id Carrocería</th>
+                        <th>Carrocería</th>
+                        <th>Id Clase de Vehículo</th>
+                        <th>Clase de Vehículo</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
@@ -580,7 +559,14 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    {{>footer}}
+
+ <footer class="main-footer">
+    <strong>Copyright &copy; 2022 <a href="#">Taller Hno Flores &REG;</a>.</strong>
+    Todos los derechos reservados
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0
+    </div>
+  </footer>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -656,5 +642,4 @@
     });
   </script>
 </body>
-
 </html>

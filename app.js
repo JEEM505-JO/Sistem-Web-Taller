@@ -15,13 +15,7 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname,'./views'))
 
 //Modulo handlebar para el view engine
-const handlebars = require('express-handlebars').create({
-    defaultLayout : 'main', //layout por defecto
-    layoutsDir : path.join(app.get('views'), 'layouts'), //directorio layouts
-    partialsDir : path.join(app.get('views'), 'partials'), //directorio partials
-    extname : 'hbs' //Nombre de extensión
-})
-app.engine('hbs',handlebars.engine)
+hbs = require('hbs').registerPartials(__dirname+"/views/partials",function(e){});
 
 //Midlewares
 app.use(express.json())

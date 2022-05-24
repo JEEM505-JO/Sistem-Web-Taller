@@ -1,3 +1,5 @@
+const res = require('express/lib/response')
+
 const express = require('express'),
     router = express.Router(),
     path = require('path')
@@ -8,7 +10,7 @@ const express = require('express'),
     })
 
     router.get('/checkin', (req, res)=>{
-        res.render('layouts/checkin.hbs')
+        res.render('layouts/checkin.hbs', {title: 'Taller Hno Flores | Chekc In'})
     })
 
     router.get('/cliente', ( req, res )=>{
@@ -19,19 +21,38 @@ const express = require('express'),
         res.render('layouts/vehiculo.hbs', { title: 'Taller Hno Flores | Vehiculo'})
     })
 
-    router.get('/vehiculo/modelo',( req, res )=>{
-        res.sendFile(path.join(__dirname,'../views/modelo.html'))
+    router.get('/modelo',( req, res )=>{
+      res.render('layouts/modelo.hbs', {title: 'Taller Hno Flores | Modelo'})
     })
 
-    router.get('/vehiculo/carroceria', (req,res)=>{
-        res.sendFile(path.join(__dirname,'../views/carroceria.html'))
+    router.get('/carroceria', (req,res)=>{
+        res.render('layouts/carroceria.hbs', {title: 'Taller Hno Flores | Carroceria'})
     })
 
-    router.get('/vehiculo/color', (req,res)=>{
-        res.sendFile(path.join(__dirname, '../views/color.html'))
+    router.get('/color', (req,res)=>{
+        res.render('layouts/color.hbs', {title: 'Taller Hno Flores | Color'})
     })
 
-    router.get('/vehiculo/motor', (req, res)=>{
-        res.sendFile(path.join(__dirname, '../views/motor.html'))
+    router.get('/orden', (req, res)=> {
+        res.render('layouts/orden.hbs', { title: 'Taller Hno Flores | Ordenes'})
     })
+
+    router.get('/mecanico', (req, res)=>{
+        res.render('layouts/mecanico.hbs', {title: 'Taller Hno Flores | Empleados'})
+    })
+
+    router.get('/falla', (req, res)=> {
+        res.render('layouts/falla.hbs', { title: 'Taller Hno Flores | Fallas'})
+
+    })
+
+    router.get('/producto', (req, res)=> {
+        res.render('layouts/producto.hbs', { title: 'Taller Hno Flores | Producto'})
+    }) 
+
+    router.get('/servicio',( req, res ) =>{ 
+        res.render( 'layouts/servicio.hbs', { title: 'Taller Hno Flores | Servicio'})
+    })
+
+    
 module.exports = router

@@ -1,11 +1,28 @@
-{{>header}}
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"> 
- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vehiculo | Modelo</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../..//dist/css/adminlte.min.css">
+</head>
+
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
     <!-- Navbar -->
-    {{>nav}}
+    {{>header}}
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -18,17 +35,16 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Vehículo</h1>
+              <h1>Modelo</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="./">Inicio</a></li>
-                <li class="breadcrumb-item active">Vehículo</li>
+                <li class="breadcrumb-item"><a href="./">Vehículo</a></li>
+                <li class="breadcrumb-item active">Modelo</li>
               </ol>
             </div>
           </div>
-        </div>
-        <!-- /.container-fluid -->
+        </div><!-- /.container-fluid -->
       </section>
 
       <!-- Main content -->
@@ -36,170 +52,134 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+
               <div class="card-body">
                 <form>
-                  <div class="card card-primary">
-                    <div class="card-header">
-                      <h3 class="card-title">Datos del Vehículo</h3>
-                    </div>
-
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="form-group col-6">
-                          <label for="Placa">Placa</label>
-                          <input name="Placa" pattern="" title="Placa solo acepta letras en Mayuscula y números"
-                            class="form-control" type="text" />
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="card card-primary">
+                        <div class="card-header">
+                          <h3 class="card-title">Datos del Modelo de Vehículo</h3>
                         </div>
-                        
-                        <div class="form-group col-6">
-                          <label for="anio">Año</label>
-                          <input name="anio" pattern="^[0-9]" title="" class="form-control" type="number" />
-                        </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="form-group col-6">
-                          <label for="cliente">Código de Cliente</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/cliente" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
-                            </div>
-                            <select name="cliente" class="form-control" id="idcliente">
-                              <option value="1">
-                                1. <span>nombre</span>
-                              </option>
-                              <option value="2">
-                                2. <span>nombre</span>
-                              </option>
-                              <option value="3">
-                                3. <span>nombre</span>
-                              </option>
-                            </select>
+                        <div class="card-body">
+                          <div class="form-group">
+                            <label for="Modelo">Modelo</label>
+                            <input name="Modelo" pattern="" title="Modelo" class="form-control" type="text">
                           </div>
-                        </div>
-
-                        <div class="form-group col-6">
-                          <label for="modelo">Código del Modelo</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/vehiculo/modelo" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
+                          <div class="form-group">
+                            <label for="Marca">Marca</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <button type="button" class="btn btn-warning dropdown-toggle" id="btn_Action" data-toggle="dropdown" aria-expanded="true">
+                                  Seleccionar Acción
+                                </button>
+                                <ul class="dropdown-menu" style="font-family: Arial, Helvetica, sans-serif;">
+                                  <li class="dropdown-item"><a id="btn_new" type="button">Nueva</a></li>
+                                  <li class="dropdown-divider"></li>
+                                  <li class="dropdown-item"><a id="btn_register" type="button">Registradas</a></li>
+                                </ul>
+                              </div>
+                              <input name="Marca" pattern="" title="Marca" id="Marca_input" class="form-control" type="text">
+                              <select name="motor" title="Seleccionar Marca" class="form-control d-none" id="Marca_select">
+                                <option value="1">1. <span>marca</span></option>
+                                <option value="2">2. <span>marca</span></option>
+                                <option value="3">3. <span>marca</span></option>
+                              </select>
                             </div>
-                            <select name="modelo" class="form-control" id="idmodelo">
-                              <option value="1">
-                                1. <span>modelo</span>
-                              </option>
-                              <option value="2">
-                                2. <span>modelo</span>
-                              </option>
-                              <option value="3">
-                                3. <span>modelo</span>
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="form-group col-6">
-                          <label for="color">Código del Color</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/vehiculo/color" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
-                            </div>
-                            <select name="color" class="form-control" id="idcolor">
-                              <option value="1">1. <span>color</span></option>
-                              <option value="2">2. <span>color</span></option>
-                              <option value="3">3. <span>color</span></option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="form-group col-6">
-                          <label for="combustible">Tipo de Combustible</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/vehiculo/combustible" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
-                            </div>
-                            <select name="combustible" class="form-control" id="idcombustible">
-                              <option value="1">
-                                1. <span>combustible</span>
-                              </option>
-                              <option value="2">
-                                2. <span>combustible</span>
-                              </option>
-                              <option value="3">
-                                3. <span>combustible</span>
-                              </option>
-                            </select>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div class="col-md-4">
+                      <div class="card card-primary">
 
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-primary"><i class="nav-icon fa fa-plus pr-2"></i>Agregar</button>
-                      <button type="button" class="btn btn-default float-right"><i class="nav-icon fa fa-trash pr-2"></i>Limpiar</button>
+                        <div class="card-header">
+                          <h3 class="card-title">Acciones</h3>
+                        </div>
+
+                        <div class="card-body pb-2 pt-3 ">
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-primary"> <i class="fa fa-plus nav-icon pr-2"></i>
+                              Agregar</button>
+                            <button type="button" class="btn btn-default   float-right"> <i
+                                class="fa fa-trash nav-icon pr-2"></i>Limpiar</button>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="card card-secondary">
+                        <div class="card-header">
+                          <h4 class="card-title">Formulario de Vehículos</h4>
+                        </div>
+                        <div class="card-body p-3">
+                          <a href="/vehiculo" type="button" class="btn btn-outline-secondary">
+                            Ir al formulario de Vehiculos<i class="fa fa-angle-double-right float-right pl-2 nav-icon"></i>
+                          </a>
+                        </div>
+                      </div>
+
+
                     </div>
+
                   </div>
                 </form>
               </div>
 
-              </div>
+
+
 
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">
-                    Registro de los Datos de los Vehículos
-                  </h3>
+                  <!-- Consulta de los Modelos INNER JOIN Marcas -->
+                  <h3 class="card-title">Registro de los Modelos y Marcas</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Placa</th>
-                        <th>Id Cliente</th>
                         <th>Id Modelo</th>
-                        <th>Código Color</th>
-                        <th>Tipo de combustible</th>
-                        <th>Tipo de Motor</th>
-                        <th>Año</th>
+                        <th>Modelo</th>
+                        <th>Id Marca</th>
+                        <th>Marca</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 4.0</td>
+                        <td>Internet
+                          Explorer 4.0
+                        </td>
                         <td>Win 95+</td>
-                        <td>4</td>
+                        <td> 4</td>
                         <td>X</td>
                       </tr>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 5.0</td>
+                        <td>Internet
+                          Explorer 5.0
+                        </td>
                         <td>Win 95+</td>
                         <td>5</td>
                         <td>C</td>
                       </tr>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 5.5</td>
+                        <td>Internet
+                          Explorer 5.5
+                        </td>
                         <td>Win 95+</td>
                         <td>5.5</td>
                         <td>A</td>
                       </tr>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 6</td>
+                        <td>Internet
+                          Explorer 6
+                        </td>
                         <td>Win 98+</td>
                         <td>6</td>
                         <td>A</td>
@@ -600,6 +580,8 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -608,45 +590,71 @@
   </div>
   <!-- ./wrapper -->
 
+  <script>
+    const d = document;
+    const $select = d.getElementById('Marca_select')
+    const $input = d.getElementById('Marca_input')
+    //Boton de Accion
+    const $btnAction = d.getElementById('btn_Action')
+    
+    const $btnNuevo = d.getElementById('btn_new')
+    const $btnRegistrados = d.getElementById('btn_register')
+    
+    d.addEventListener('click',e => {
+      if(e.target === $btnNuevo){
+        $btnAction.textContent = $btnNuevo.textContent
 
+        $select.classList.add('d-none')
+        $input.classList.remove('d-none')
+      }
+      if(e.target === $btnRegistrados){
+        $btnAction.textContent = $btnRegistrados.textContent
+        
+        $input.classList.add('d-none')
+        $select.classList.remove('d-none')
+      }
+    })
+
+  </script>
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- DataTables  & Plugins -->
+  <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="../../plugins/jszip/jszip.min.js"></script>
+  <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
-
   <script>
     $(function () {
-      $("#example1")
-        .DataTable({
-          responsive: true,
-          lengthChange: false,
-          autoWidth: false,
-          buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
-        })
-        .buttons()
-        .container()
-        .appendTo("#example1_wrapper .col-md-6:eq(0)");
-      $("#example2").DataTable({
-        paging: true,
-        lengthChange: false,
-        searching: false,
-        ordering: true,
-        info: true,
-        autoWidth: false,
-        responsive: true,
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
       });
     });
   </script>
 
-  
-  <script>
-          document.getElementById('example2').DataTable({
-          paging: true,
-          lengthChange: false,
-          searching: false,
-          ordering: true,
-          info: true,
-          autoWidth: false,
-          responsive: true,
-        })
-      
-  </script>
 
-  {{>footer}}
+{{>footer}}

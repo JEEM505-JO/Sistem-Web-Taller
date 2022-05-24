@@ -1,205 +1,192 @@
 {{>header}}
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"> 
- 
-<body class="hold-transition sidebar-mini">
-  <div class="wrapper">
-    <!-- Navbar -->
-    {{>nav}}
-    <!-- /.navbar -->
+<div class="wrapper">
 
-    <!-- Main Sidebar Container -->
+    {{! Navbar }}
+    {{>nav}}
+    {{! /.navbar }}
+
+    {{! Main Sidebar Container }}
     {{>aside}}
 
-    <!-- Content Wrapper. Contains page content -->
+    {{! Content Wrapper. Contains page content }}
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
+      {{! Content Header (Page header) }}
       <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Vehículo</h1>
+              <h1>Empleados</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="./">Inicio</a></li>
-                <li class="breadcrumb-item active">Vehículo</li>
+                <li class="breadcrumb-item active">Empleados</li>
               </ol>
             </div>
           </div>
-        </div>
-        <!-- /.container-fluid -->
+        </div>{{! /.container-fluid }}
       </section>
 
-      <!-- Main content -->
+      {{! Main content }}
       <section class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
+
               <div class="card-body">
                 <form>
-                  <div class="card card-primary">
-                    <div class="card-header">
-                      <h3 class="card-title">Datos del Vehículo</h3>
-                    </div>
-
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="form-group col-6">
-                          <label for="Placa">Placa</label>
-                          <input name="Placa" pattern="" title="Placa solo acepta letras en Mayuscula y números"
-                            class="form-control" type="text" />
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="card card-primary">
+                        <div class="card-header">
+                          <h3 class="card-title">Datos del Empleado</h3>
                         </div>
-                        
-                        <div class="form-group col-6">
-                          <label for="anio">Año</label>
-                          <input name="anio" pattern="^[0-9]" title="" class="form-control" type="number" />
-                        </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="form-group col-6">
-                          <label for="cliente">Código de Cliente</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/cliente" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
-                            </div>
-                            <select name="cliente" class="form-control" id="idcliente">
-                              <option value="1">
-                                1. <span>nombre</span>
-                              </option>
-                              <option value="2">
-                                2. <span>nombre</span>
-                              </option>
-                              <option value="3">
-                                3. <span>nombre</span>
-                              </option>
-                            </select>
+                        <div class="card-body">
+                          <div class="row">
+                           <div class="form-group col-md-6">
+                            <label for="Nombre">Nombres</label>
+                            <input name="Nombre" pattern="" title="Nombre solo acepta letras y espacios en blanco"
+                              class="form-control" type="text">
                           </div>
-                        </div>
-
-                        <div class="form-group col-6">
-                          <label for="modelo">Código del Modelo</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/vehiculo/modelo" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
-                            </div>
-                            <select name="modelo" class="form-control" id="idmodelo">
-                              <option value="1">
-                                1. <span>modelo</span>
-                              </option>
-                              <option value="2">
-                                2. <span>modelo</span>
-                              </option>
-                              <option value="3">
-                                3. <span>modelo</span>
-                              </option>
-                            </select>
+                          <div class="form-group col-md-6">
+                            <label for="Apellido">Apellidos</label>
+                            <input name="Apellido" pattern="" title="" class="form-control" type="text">
                           </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="form-group col-6">
-                          <label for="color">Código del Color</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/vehiculo/color" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
-                            </div>
-                            <select name="color" class="form-control" id="idcolor">
-                              <option value="1">1. <span>color</span></option>
-                              <option value="2">2. <span>color</span></option>
-                              <option value="3">3. <span>color</span></option>
-                            </select>
                           </div>
-                        </div>
-
-                        <div class="form-group col-6">
-                          <label for="combustible">Tipo de Combustible</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <a href="/vehiculo/combustible" type="button" class="btn btn-outline-info">
-                                <i class="fa fa-plus nav-icon"></i>
-                              </a>
+                          <div class="row">
+                          <div class="form-group col-md-6">
+                            <label for="estado">Estado</label>
+                            <div class="input-group">
+                              <select name="estado" class="form-control" title="Estado" id="Estado">
+                                <option value="1">
+                                  <span>Activo</span>
+                                </option>
+                                <option value="0">
+                                  <span>Inactivo</span>
+                                </option>
+                              </select>
                             </div>
-                            <select name="combustible" class="form-control" id="idcombustible">
-                              <option value="1">
-                                1. <span>combustible</span>
-                              </option>
-                              <option value="2">
-                                2. <span>combustible</span>
-                              </option>
-                              <option value="3">
-                                3. <span>combustible</span>
-                              </option>
-                            </select>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="especialidad">Especialidad</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <button type="button" class="btn btn-warning dropdown-toggle" id="btn_Action" data-toggle="dropdown" aria-expanded="true">
+                                  Seleccionar Acción
+                                </button>
+                                <ul class="dropdown-menu" style="font-family: Arial, Helvetica, sans-serif;">
+                                  <li class="dropdown-item"><a id="btn_new" type="button">Nueva</a></li>
+                                  <li class="dropdown-divider"></li>
+                                  <li class="dropdown-item"><a id="btn_register" type="button">Registradas</a></li>
+                                </ul>
+                              </div>
+                              <input name="especialidad" pattern="" title="especialidad" id="Marca_input" class="form-control" type="text">
+                              <select name="especialidad" title="Seleccionar especialidad" class="form-control d-none" id="idespecialidad">
+                                <option value="1">1. <span>especialidad</span></option>
+                                <option value="2">2. <span>especialidad</span></option>
+                                <option value="3">3. <span>especialidad</span></option>
+                              </select>
+                            </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="Jefe">Jefe</label>
+                            <div class="input-group">
+                              <select name="Jefe" class="form-control" title="Jefe" id="Jefe">
+                                <option value="1">
+                                  <span>Nombre del Jefe</span>
+                                </option>
+                                <option value="2">
+                                  <span>Nombre del Jefe</span>
+                                </option>
+                                <option value="3">
+                                  <span>Nombre del Jefe</span>
+                                </option>
+                              </select>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div class="col-md-4">
+                      <div class="card card-primary">
 
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-primary"><i class="nav-icon fa fa-plus pr-2"></i>Agregar</button>
-                      <button type="button" class="btn btn-default float-right"><i class="nav-icon fa fa-trash pr-2"></i>Limpiar</button>
+                        <div class="card-header">
+                          <h3 class="card-title">Acciones</h3>
+                        </div>
+
+                        <div class="card-body pb-3 pt-4">
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-primary"> <i class="fa fa-plus nav-icon pr-2"></i>
+                              Agregar</button>
+                            <button type="button" class="btn btn-default   float-right"> <i
+                                class="fa fa-trash nav-icon pr-2"></i>Limpiar</button>
+                          </div>
+                          <div class="form-group">
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
               </div>
 
-              </div>
+
+
 
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">
-                    Registro de los Datos de los Vehículos
-                  </h3>
+                  <h3 class="card-title">Registro de los Datos de Clientes</h3>
                 </div>
-                <!-- /.card-header -->
+                {{! /.card-header }}
                 <div class="card-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th>Placa</th>
-                        <th>Id Cliente</th>
-                        <th>Id Modelo</th>
-                        <th>Código Color</th>
-                        <th>Tipo de combustible</th>
-                        <th>Tipo de Motor</th>
-                        <th>Año</th>
+                        <th>Id Empleado</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Estado</th>
+                        <th>Jefe</th>
+                        <th>Id Especialidad</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 4.0</td>
+                        <td>Internet
+                          Explorer 4.0
+                        </td>
                         <td>Win 95+</td>
-                        <td>4</td>
+                        <td> 4</td>
                         <td>X</td>
                       </tr>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 5.0</td>
+                        <td>Internet
+                          Explorer 5.0
+                        </td>
                         <td>Win 95+</td>
                         <td>5</td>
                         <td>C</td>
                       </tr>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 5.5</td>
+                        <td>Internet
+                          Explorer 5.5
+                        </td>
                         <td>Win 95+</td>
                         <td>5.5</td>
                         <td>A</td>
                       </tr>
                       <tr>
                         <td>Trident</td>
-                        <td>Internet Explorer 6</td>
+                        <td>Internet
+                          Explorer 6
+                        </td>
                         <td>Win 98+</td>
                         <td>6</td>
                         <td>A</td>
@@ -587,66 +574,71 @@
                     </tfoot>
                   </table>
                 </div>
-                <!-- /.card-body -->
+                {{! /.card-body }}
               </div>
-              <!-- /.card -->
+              {{! /.card }}
             </div>
-            <!-- /.col -->
+            {{! /.col }}
           </div>
-          <!-- /.row -->
+          {{! /.row }}
         </div>
-        <!-- /.container-fluid -->
+        {{! /.container-fluid }}
       </section>
-      <!-- /.content -->
+      {{! /.content }}
     </div>
-    <!-- /.content-wrapper -->
-    <!-- Control Sidebar -->
+    {{! /.content-wrapper }}
+    {{! Control Sidebar }}
     <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
+      {{! Control sidebar content goes here }}
     </aside>
-    <!-- /.control-sidebar -->
+    {{! /.control-sidebar }}
   </div>
-  <!-- ./wrapper -->
+  {{! ./wrapper }}
+  <script>
+    const d = document;
+    const $select = d.getElementById('idespecialidad')
+    const $input = d.getElementById('Marca_input')
+    //Boton de Accion
+    const $btnAction = d.getElementById('btn_Action')
+    
+    const $btnNuevo = d.getElementById('btn_new')
+    const $btnRegistrados = d.getElementById('btn_register')
+    
+    d.addEventListener('click',e => {
+      if(e.target === $btnNuevo){
+        $btnAction.textContent = $btnNuevo.textContent
 
+        $select.classList.add('d-none')
+        $input.classList.remove('d-none')
+      }
+      if(e.target === $btnRegistrados){
+        $btnAction.textContent = $btnRegistrados.textContent
+        
+        $input.classList.add('d-none')
+        $select.classList.remove('d-none')
+      }
+    })
 
-  <!-- Page specific script -->
+  </script>
 
+  {{! Page specific script }}
   <script>
     $(function () {
-      $("#example1")
-        .DataTable({
-          responsive: true,
-          lengthChange: false,
-          autoWidth: false,
-          buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
-        })
-        .buttons()
-        .container()
-        .appendTo("#example1_wrapper .col-md-6:eq(0)");
-      $("#example2").DataTable({
-        paging: true,
-        lengthChange: false,
-        searching: false,
-        ordering: true,
-        info: true,
-        autoWidth: false,
-        responsive: true,
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "overflowX" : "30vh"  
       });
     });
   </script>
 
-  
-  <script>
-          document.getElementById('example2').DataTable({
-          paging: true,
-          lengthChange: false,
-          searching: false,
-          ordering: true,
-          info: true,
-          autoWidth: false,
-          responsive: true,
-        })
-      
-  </script>
-
-  {{>footer}}
+{{>footer}}
