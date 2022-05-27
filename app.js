@@ -1,5 +1,6 @@
 const express = require('express'),
     path = require('path'),
+    morgan = require('morgan')
     app = express()
 
 //Inicializacion de la aplicacion
@@ -9,7 +10,7 @@ const publicDir = `${__dirname}/public`
 
 //Directorio Estatico 
 app.use(express.static(publicDir))
-
+app.use(morgan('dev'))
 //View Engine 
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname,'./views'))

@@ -1,5 +1,3 @@
-const res = require('express/lib/response')
-
 const express = require('express'),
     router = express.Router(),
     path = require('path')
@@ -17,9 +15,9 @@ const express = require('express'),
         res.render('layouts/cliente.hbs', { title: 'Taller Hno Flores | Cliente'} ) 
     })
 
-    router.get('/vehiculo', (req, res)=>{
-        res.render('layouts/vehiculo.hbs', { title: 'Taller Hno Flores | Vehiculo'})
-    })
+    // router.get('/vehiculo', (req, res)=>{
+    //     res.render('layouts/vehiculo.hbs', { title: 'Taller Hno Flores | Vehiculo' })
+    // })
 
     router.get('/modelo',( req, res )=>{
       res.render('layouts/modelo.hbs', {title: 'Taller Hno Flores | Modelo'})

@@ -1,53 +1,33 @@
 const express = require('express'),
     router = express.Router(),
-    pool = require('../database')
+    pool = require('../database'),
+    model = require('../models/model'),
+    controller = require('../controllers/controller')
 
 //Vehiculo
+const VEHICULO_TABLE = 'vehiculo', ID_VEHICULO = 'Placa'
 
 //obtener Todos los vehiculos
-router.get('/api/vehiculo', async (req, res) => {
-    const rows = await pool.query(
-        'SELECT * FROM vehiculo')
-    res.send(rows)
-})
+router.get('/vehiculo', controller.getVehiculo)
+
 
 //Obtener uno de los Vehiculos
-router.get('/vehiculo/:id', async(req, res)=>{
+router.get('/api/vehiculo/:id', async(req, res)=>{
     const id = req.params.id
 
-    console.log(id)
     const row = await pool.query(
-        'SELECT * FROM vehiculo WHERE Placa = ?', [id]
+        model.getOneElement(VEHICULO_TABLE, ID_VEHICULO, id)
     )
-    res.send(row)
+    if(row) res.status(200).send(row)
+
+    res.status(404)
 })
 
 //Insertar un vehiculo 
-router.post('/vehiculo', async(req, res)=>{
-    const vehiculo = req.body
-
-    const result = await pool.query(
-        'INSERT INTO vehiculo SET ?', [vehiculo]
-    )
-    if(result){
-        res.send(result)
-    }
-    else{
-        res.send('Fallo al insertar')
-    }
-})
-
-
+router.post('/vehiculo', controller.insertVehiculo)
 
 //Eliminar un vehiculo
-router.delete('/vehiculo/:id', async(req, res)=>{
-    const result = await pool.query('DELETE FROM vehiculo WHERE Placa = ?',req.params.id)
-    if(result)
-     res.send('Elemento eliminado')
-    else{
-        res.send('Error al eliminar')
-    }
-})
+router.delete('/vehiculo/:id', controller.deleteVehiculo)
 
 async function InsertarOActualizar(id){
 
