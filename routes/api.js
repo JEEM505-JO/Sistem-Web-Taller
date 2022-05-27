@@ -29,8 +29,6 @@ router.post('/vehiculo', controller.insertVehiculo)
 //Eliminar un vehiculo
 router.delete('/vehiculo/:id', controller.deleteVehiculo)
 
-async function InsertarOActualizar(id){
-
-} 
+router.put('/vehiculo/:id', controller.updateVehiculo)
 
 module.exports = router

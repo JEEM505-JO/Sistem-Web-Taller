@@ -48,12 +48,12 @@
                         <div class="form-group col-6">
                           <label for="Placa">Placa</label>
                           <input name="Placa" title="Placa solo acepta letras en Mayuscula y números"
-                            class="form-control" type="text" />
+                            class="form-control" type="text" required/>
                         </div>
                         
                         <div class="form-group col-6">
                           <label for="año">Año</label>
-                          <input name="Año" pattern="^[0-9]" title="" class="form-control" type="number" />
+                          <input name="Año" pattern="^[0-9]" title="" class="form-control" type="number" required/>
                         </div>
                       </div>
 
@@ -66,7 +66,7 @@
                                 <i class="fa fa-plus nav-icon"></i>
                               </a>
                             </div>
-                            <select name="IdCliente" class="form-control" id="idcliente">
+                            <select name="IdCliente" class="form-control" id="idcliente" required>
                               {{#each cliente}}
                                 <option value={{ this.IdCliente }}>{{this.IdCliente}}. {{ this.Nombre }}</option>
                               {{/each}}
@@ -83,7 +83,7 @@
                                 <i class="fa fa-plus nav-icon"></i>
                               </a>
                             </div>
-                            <select name="IDModelo" class="form-control" id="idmodelo">
+                            <select name="IDModelo" class="form-control" id="idmodelo" required>
                               {{#each Modelo}}
                               <option value={{this.IDModelo}}> {{this.IDModelo}}. {{ this.NombreModelo }} </option>
                               {{/each}}
@@ -101,7 +101,7 @@
                                 <i class="fa fa-plus nav-icon"></i>
                               </a>
                             </div>
-                            <select name="CodigoColor" class="form-control" id="idcolor">
+                            <select name="CodigoColor" class="form-control" id="idcolor" required>
                               {{#each color}}
                               <option value={{this.CodigoColor}}> {{ this.NombreColor }}</option>
                               {{/each }}
@@ -117,7 +117,7 @@
                                 <i class="fa fa-plus nav-icon"></i>
                               </a>
                             </div>
-                            <select name="TipoCarroceria" class="form-control" id="idTipoCarroceria">
+                            <select name="TipoCarroceria" class="form-control" id="idTipoCarroceria" required>
                               {{#each TipoCarroceria}}
                                 <option value={{this.TipoCarroceria}}> {{ this.Nombre }}</option>
                               {{/each}}
@@ -134,9 +134,6 @@
                   </div>
                 </form>
               </div>
-
-              
-
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">

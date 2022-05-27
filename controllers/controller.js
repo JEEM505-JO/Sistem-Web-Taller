@@ -33,7 +33,17 @@ const vehiculo_controller = {
     else{
         res.send('Error al eliminar')
     }
-}
+},
+
+  updateVehiculo : async(req, res)=>{
+    const result = await pool.query( 'UPDATE vehiculo SET ? WHERE Placa = ?', req.body, req.params.id)
+
+    if(result)
+      res.redirect('/vehiculo')
+    else{
+      res.send('Error al modificar')
+    }
+  }
 
 }
 
