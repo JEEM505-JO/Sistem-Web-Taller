@@ -24,7 +24,7 @@ router.get('/api/vehiculo/:id', async(req, res)=>{
 })
 
 //Insertar un vehiculo 
-router.post('/vehiculo', controller.insertVehiculo)
+router.post('/vehiculo', controller.guardarVehiculo)
 
 //Eliminar un vehiculo
 router.delete('/vehiculo/:id', controller.deleteVehiculo)

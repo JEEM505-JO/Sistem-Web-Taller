@@ -14,16 +14,28 @@ const vehiculo_controller = {
       if (rows){ res.status(200).render('layouts/vehiculo' , { registers: rows, cliente, TipoCarroceria, Modelo, color }) } else next(err)
   },
 
-  insertVehiculo: async(req, res, next)=>{
-    const values = req.body;
-    const result = pool.query('INSERT INTO vehiculo SET ?', [values])
-    if( result) 
-      res.status(201).redirect('/vehiculo')
+    guardarVehiculo: async(req, res, next)=>{
+      const values = req.body;
 
-    else{
-      res.send('Not Inserted', result.ErrorPacket)
-      next()
-    }
+      console.log(values.Placa)
+      
+      const vehiculo = await pool.query('SELECT * FROM vehiculo WHERE Placa = ?', values.Placa)
+
+      console.log(vehiculo)
+
+      if(vehiculo){
+        const result = await pool.query('UPDATE vehiculo SET ? WHERE Placa = ?', [values, values.Placa])
+         if(result) res.status(202).redirect('/vehiculo'); else res.send('Error not modified'); next()
+      }else{
+        const result = pool.query('INSERT INTO vehiculo SET ?', [values])
+        if( result) 
+          res.status(201).redirect('/vehiculo')
+  
+        else{
+          res.send('Not Inserted', result.ErrorPacket)
+          next()
+        }
+      }
   },
 
   deleteVehiculo:  async(req, res)=>{

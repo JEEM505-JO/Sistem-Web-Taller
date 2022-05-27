@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary"><i class="nav-icon fa fa-plus pr-2"></i>Agregar</button>
+                      <button type="submit" class="btn btn-primary"><i class="nav-icon fa fa-plus pr-2"></i>Guardar</button>
                       <button type="button" class="btn btn-default float-right"><i class="nav-icon fa fa-trash pr-2"></i>Limpiar</button>
                     </div>
                   </div>
@@ -167,10 +167,12 @@
                         <td>{{ this.Nombre }} </td> <!--Tipo Motor -->
                         <td>{{ this.Año}} </td>
                         <td>
-                          <button class="btn" data-placa={{this.Placa}}>
-                            <i class="nav-icon fas fa-edit"></i>
+                          <button class="btn btn-edit" data-placa={{this.Placa}} data-cliente={{ this.IdCliente }}
+                          data-modelo={{ this.IDModelo }} data-color={{ this.CodigoColor }} data-carroceria={{ this.TipoCarroceria }} data-clase={{ this.Nombre }} data-anio={{ this.Año }}>
+                            <i class="nav-icon fas fa-edit" data-placa={{ this.Placa }} data-cliente={{ this.IdCliente }}
+                          data-modelo={{ this.IDModelo }} data-color={{ this.CodigoColor }} data-carroceria={{ this.TipoCarroceria }} data-clase={{ this.Nombre }} data-anio={{ this.Año }}></i>
                           </button>
-                          <button class="btn btn-delete" data-placa={{ this.Placa }}>
+                          <button class="btn btn-delete">
                             <i class="nav-icon fas fa-trash" data-placa={{ this.Placa }}></i>
                           </button>
                         </td>
@@ -201,9 +203,29 @@
   </div>
   <!-- ./wrapper -->
 
+  <script>
+    const d = document;
 
-  <!-- Page specific script -->
-  {{!-- <script>
+    const $inputPlaca = d.querySelector('input[name="Placa"]'),
+      $selectCliente = d.querySelector('select[name="IdCliente"]'),
+      $selectModelo = d.querySelector('select[name="IDModelo"]'),
+      $selectColor = d.querySelector('select[name="CodigoColor"]'),
+      $selectCarroceria = d.querySelector('select[name="TipoCarroceria"]'),
+      $inputAnio = d.querySelector('input[name="Año"]');
+    //  $selectClase = d.querySelector
+
+    document.addEventListener( 'click', e =>{
+      if(e.target.matches('button.btn.btn-edit > *')){
+        console.log('Vamos')
+        $inputPlaca.value = e.target.dataset.placa
+        $selectCliente.value = e.target.dataset.cliente
+        $selectModelo.value = e.target.dataset.modelo
+        $selectColor.value = e.target.dataset.color
+        $selectCarroceria.value = e.target.dataset.carroceria
+        $inputAnio.value = e.target.dataset.anio
+      }
+    })
+  </script>
  /// ESTO SE VA CAMBIAR
 
      /* document.addEventListener('click', (e) =>{
