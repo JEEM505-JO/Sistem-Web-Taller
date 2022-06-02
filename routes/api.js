@@ -1,15 +1,18 @@
+const carroceria_controller = require('../controllers/carroceria_controller')
+
 const express = require('express'),
     router = express.Router(),
     pool = require('../database'),
     model = require('../models/model'),
-    controller = require('../controllers/controller')
+    vehiculoController = require('../controllers/controller'),
+    modeloController = require('../controllers/modelo_controller'),
+    clienteController = require('../controllers/cliente_controller')
 
-//Vehiculo
+//VEHICULO
 const VEHICULO_TABLE = 'vehiculo', ID_VEHICULO = 'Placa'
 
 //obtener Todos los vehiculos
-router.get('/vehiculo', controller.getVehiculo)
-
+router.get('/vehiculo', vehiculoController.getVehiculo)
 
 //Obtener uno de los Vehiculos
 router.get('/api/vehiculo/:id', async(req, res)=>{
@@ -24,11 +27,31 @@ router.get('/api/vehiculo/:id', async(req, res)=>{
 })
 
 //Insertar un vehiculo 
-router.post('/vehiculo', controller.guardarVehiculo)
+router.post('/vehiculo', vehiculoController.guardarVehiculo)
 
 //Eliminar un vehiculo
-router.delete('/vehiculo/:id', controller.deleteVehiculo)
+router.delete('/vehiculo/:id', vehiculoController.deleteVehiculo)
 
-router.put('/vehiculo/:id', controller.updateVehiculo)
+
+//MODELO 
+
+router.get('/modelo', modeloController.getModelo)
+
+router.post('/modelo', modeloController.guardarModelo)
+
+router.delete('/modelo/:id', modeloController.deleteModelo)
+
+
+//Carroceria
+
+router.get('/carroceria', carroceria_controller.getcarroceria)
+
+
+//Cliente
+
+router.get('/cliente', clienteController.getCliente)
+
+router.post('/cliente', clienteController.guardarCliente)
 
 module.exports = router
+

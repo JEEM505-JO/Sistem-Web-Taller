@@ -1,30 +1,17 @@
+
 const express = require('express'),
     router = express.Router(),
-    path = require('path')
+    pool = require('../database.js')
 
-    router.get('/', (req, res) =>{
-        res.render('layouts/inicio.hbs', { title: 'Taller Hno Flores | Inicio', orders: 150, serv: 40, clientes: 13, Repuestos: 45 })
-        // res.sendFile(path.join(__dirname,'../views/index.html'))
+    router.get('/', async(req, res) =>{
+        const NumeroCliente = await pool.query("SELECT COUNT(*) AS NumeroCliente FROM cliente"),
+            NumeroOrdenes = await pool.query('SELECT COUNT(*) AS TotalOrdenes FROM Orden'),
+            NumeroProductos = await pool.query('SELECT COUNT(*) AS TotalProductos FROM producto WHERE Estado = 1')
+        res.render('layouts/inicio.hbs', { title: 'Taller Hno Flores | Inicio', NumeroOrdenes, serv: 40, NumeroCliente, NumeroProductos })
     })
 
     router.get('/checkin', (req, res)=>{
         res.render('layouts/checkin.hbs', {title: 'Taller Hno Flores | Chekc In'})
-    })
-
-    router.get('/cliente', ( req, res )=>{
-        res.render('layouts/cliente.hbs', { title: 'Taller Hno Flores | Cliente'} ) 
-    })
-
-    // router.get('/vehiculo', (req, res)=>{
-    //     res.render('layouts/vehiculo.hbs', { title: 'Taller Hno Flores | Vehiculo' })
-    // })
-
-    router.get('/modelo',( req, res )=>{
-      res.render('layouts/modelo.hbs', {title: 'Taller Hno Flores | Modelo'})
-    })
-
-    router.get('/carroceria', (req,res)=>{
-        res.render('layouts/carroceria.hbs', {title: 'Taller Hno Flores | Carroceria'})
     })
 
     router.get('/color', (req,res)=>{
