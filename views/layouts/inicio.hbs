@@ -37,9 +37,7 @@
           {{! small box }}
           <div class="small-box bg-info">
             <div class="inner">
-              {{#each NumeroOrdenes }}
-              <h3>{{ TotalOrdenes }}</h3>
-              {{/each}}
+              <h3>{{NumeroOrdenes}}</h3>
               <p>Nuevas Ordenes</p>
             </div>
             <div class="icon">
@@ -54,7 +52,7 @@
           {{! small box }}
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>{{ serv }}<sup style="font-size: 20px">%</sup></h3>
+              <h3>{{ NumeroServicios }}</h3>
 
               <p>Servicios</p>
             </div>
@@ -69,9 +67,7 @@
           {{! small box }}
           <div class="small-box bg-warning">
             <div class="inner">
-              {{#each NumeroCliente }}
                 <h3>{{ NumeroCliente }}</h3>
-              {{/each}}
               <p>Números de clientes</p>
             </div>
             <div class="icon">
@@ -85,9 +81,7 @@
           {{! small box }}
           <div class="small-box bg-danger">
             <div class="inner">
-              {{#each NumeroProductos }}
-              <h3>{{ TotalProductos }} </h3>
-              {{/each}}
+              <h3>{{NumeroProductos}}</h3>
               <p>Repuestos</p>
             </div>
             <div class="icon">

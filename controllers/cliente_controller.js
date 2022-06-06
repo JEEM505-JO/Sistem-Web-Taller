@@ -4,7 +4,7 @@ const clienteController = {
   
   getCliente : async (req, res, next) => {
     const maxId = await pool.query("SELECT (MAX(IdCliente)+1) AS maxId FROM cliente")
-    const clientes = await pool.query('SELECT * FROM cliente')
+    const clientes = await pool.query('SELECT * FROM cliente WHERE Estado = 1')
     
     if(clientes.length > 0){
       res.render('layouts/cliente.hbs', 
@@ -39,8 +39,17 @@ const clienteController = {
     if(result){
       res.redirect('/cliente')
     }
-  }
+  },
 
+  deleteCliente : async (req, res) => {
+    const result = await pool.query("UPDATE cliente SET Estado = 0 WHERE IdCliente = ?", req.params.id)
+
+    if(result.changedRows > 0){
+      res.status(202).redirect('/cliente')
+    }else{
+      res.status(404)
+    }
+  }
 }
 
 module.exports = clienteController

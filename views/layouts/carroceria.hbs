@@ -36,24 +36,23 @@
             <div class="col-12">
 
               <div class="card-body">
-                <form>
+                <form action="/carroceria" method="post">
                   <div class="row">
                     <div class="col-md-8">
                       <div class="card card-primary">
                         <div class="card-header">
                           <h3 id="title" class="card-title">Datos de la Carrocería y Clase de Vehículo</h3>
                         </div>
-
                         <div class="card-body">
                           <div class="form-group" style="display: none;">
-                            <input id="idcarroceria" name="TipoCarroceria" readonly class="form-control" type="text">
+                            <input id="idcarroceria" name="TipoCarroceria" readonly class="form-control" type="text" value={{idTipoCarroceria}}>
                           </div>
                           <div class="form-group">
                             <label for="Nombre">Carrocería</label>
-                            <input id="namecarroceria" name="Nombre" class="form-control" type="text">
+                            <input id="namecarroceria" name="Nombre" class="form-control" type="text" required>
                           </div>
                           <div class="form-group" style="display: none;">
-                            <input name="IDClase" class="form-control" type="text">
+                            <input id="idclase" name="IDClase" class="form-control" type="text" value={{idClase}} required>
                           </div>
                           <div class="form-group">
                             <label for="clase">Clase</label>
@@ -68,12 +67,7 @@
                                   <li class="dropdown-item"><a id="btn_register" type="button" style="display: flex;">Registradas</a></li>
                                 </ul>
                               </div>
-                              <input name="clase" pattern="" title="" id="Marca_input" class="form-control" type="text">
-                              <select name="clase" class="form-control d-none" id="Marca_select">
-                                {{#each clasevehiculo}}
-                                  <option value={{this.IDClase}}>{{this.Clase}}</option>
-                                {{/each}}
-                              </select>
+                              <input id="todestroy" class="form-control" type="text" required="true" readonly>
                             </div>
                           </div>
                         </div>
@@ -81,7 +75,6 @@
                     </div>
                     <div class="col-md-4">
                       <div class="card card-primary">
-
                         <div class="card-header">
                           <h3 class="card-title">Acciones</h3>
                         </div>
@@ -89,7 +82,7 @@
                         <div class="card-body pb-2 pt-3 ">
                           <div class="form-group">
                             <button type="submit" class="btn btn-primary"> <i class="fa fa-plus nav-icon pr-2"></i>
-                              Agregar</button>
+                              Guardar</button>
                             <button type="button" class="btn btn-default   float-right"> <i
                                 class="fa fa-trash nav-icon pr-2"></i>Limpiar</button>
                           </div>
@@ -144,7 +137,7 @@
                             data-nombrecarroceria={{this.Nombre}} data-idclase={{this.IDClase}}
                             data-clase={{this.Clase}}>
                             <i class="nav-icon fas fa-edit" data-tipocarroceria={{this.TipoCarroceria}}
-                              data-nombrecarroceria=""={{this.Nombre}} data-idclase={{this.IDClase}}
+                              data-nombrecarroceria={{this.Nombre}} data-idclase={{this.IDClase}}
                               data-clase={{this.Clase}}></i>
                           </a>
                           <button class="btn btn-delete" data-tipocarroceria={{this.TipoCarroceria}}>
@@ -186,50 +179,146 @@
   </div>
   <!-- ./wrapper -->
 
-  <script>
-    const d = document;
+  <script>  
+    const d = document
+    const TABLE_NAME = 'Clase'
 
-    const $inputCarroceria = d.getElementById('namecarroceria'),
-      $inputIDCarroceria = d.getElementById('idcarrroceria')
+    const createSelect = (name, html) =>{
+      const $select = d.createElement('select')
+      $select.className = 'form-control'
+      $select.setAttribute('name',name)
+      $select.setAttribute('required', 'true')
+      $select.innerHTML = html
+      $select.value = null
+      return $select
+    }
 
-    d.addEventListener('keyup', e =>{
-      if(e.target === $inputCarroceria){
-        let TipoCarroceria = $inputCarroceria.value.toUpperCase();
+    const createInput = (name) => {
+      const $input = d.createElement('input')
+      $input.className = 'form-control'
+      $input.setAttribute('name', name)
+      $input.setAttribute('required', 'true')
 
-        TipoCarroceria = TipoCarroceria.substring(0,1) + TipoCarroceria.substring(2,3)
+      return $input
+    }
 
-        console.log(TipoCarroceria)
-      }
-    })
-
-
-  </script>
-
-  <script>
-
-    const $select = d.getElementById('Marca_select')
-    const $input = d.getElementById('Marca_input')
-    //Boton de Accion
     const $btnAction = d.getElementById('btn_Action')
-    
     const $btnNuevo = d.getElementById('btn_new')
     const $btnRegistrados = d.getElementById('btn_register')
+    const $divInputGroupPrepend = d.querySelector('.input-group-prepend')
+
+    const $inputIdClase = d.getElementById('idclase'),
+      $inputTipoCarroceria = d.getElementById('idcarroceria'),
+      $inputNameCarroceria = d.getElementById('namecarroceria')
     
     d.addEventListener('click',e => {
-      if(e.target === $btnNuevo){
-        $btnAction.textContent = $btnNuevo.textContent
-        $select.classList.add('d-none')
-        $input.classList.remove('d-none')
+      if(e.target === $btnNuevo || e.target === $btnRegistrados){
+        if(d.getElementById('todestroy'))
+          d.getElementById('todestroy').parentNode.removeChild(d.getElementById('todestroy'))
+
+        if(e.target === $btnNuevo){
+          $btnAction.textContent = $btnNuevo.textContent
+
+          if(d.querySelector(`select[name="${TABLE_NAME}"]`) != null)
+            d.querySelector(`select[name="${TABLE_NAME}"]`).parentNode.removeChild(d.querySelector(`select[name="${TABLE_NAME}"]`))
+          
+          if(d.querySelector(`input[name="${TABLE_NAME}"]`) == null)
+            $divInputGroupPrepend.insertAdjacentElement('afterend',createInput(TABLE_NAME))
+
+        }else if (e.target === $btnRegistrados ){
+          $btnAction.textContent = $btnRegistrados.textContent
+
+          if (d.querySelector(`input[name=${TABLE_NAME}`) != null)
+            d.querySelector(`input[name="${TABLE_NAME}"]`).parentNode.removeChild(d.querySelector(`input[name="${TABLE_NAME}"]`))
+            
+          if(d.querySelector(`select[name="${TABLE_NAME}"]`) == null){
+            let html = `
+            {{#each clasevehiculo}}
+              <option value={{this.Clase}}>{{this.IDClase}}. {{this.Clase}}</option>
+            {{/each}}`
+
+            $divInputGroupPrepend.insertAdjacentElement('afterend', createSelect(TABLE_NAME,html))
+          }
+        } 
       }
-      if(e.target === $btnRegistrados){
+      if(e.target.matches('.btn.btn-edit > *, .btn.btn-edit')){
+        if(d.getElementById('todestroy'))
+          d.getElementById('todestroy').parentNode.removeChild(d.getElementById('todestroy'))
+       
         $btnAction.textContent = $btnRegistrados.textContent
-        
-        $input.classList.add('d-none')
-        $select.classList.remove('d-none')
+
+          if (d.querySelector(`input[name=${TABLE_NAME}`) != null)
+            d.querySelector(`input[name="${TABLE_NAME}"]`).parentNode.removeChild(d.querySelector(`input[name="${TABLE_NAME}"]`))
+            
+          if(d.querySelector(`select[name="${TABLE_NAME}"]`) == null){
+            let html = `
+            {{#each clasevehiculo}}
+              <option value={{this.Clase}}>{{this.IDClase}}. {{this.Clase}}</option>
+            {{/each}}`
+
+            $divInputGroupPrepend.insertAdjacentElement('afterend', createSelect(TABLE_NAME,html))
+
+          }
+            const $select = d.querySelector('select[name="Clase"]')
+
+            $inputTipoCarroceria.value = e.target.dataset.tipocarroceria
+            $inputNameCarroceria.value = e.target.dataset.nombrecarroceria
+            $inputIdClase.value = e.target.dataset.idclase
+
+            const getOption = Array.from($select.options).find(
+              (option) => (option.value) === (e.target.dataset.clase)
+            )
+
+            $select.value = getOption.value
+      } if(e.target.matches('.btn.btn-delete > *, .btn.btn-delete')){
+                Swal.fire({
+          title: 'Esta seguro que desea eliminar este registro?',
+          text: "No sera capaz de revertir esto",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, estoy seguro',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let options = {
+              method: 'delete',
+              headers: {
+                'Content-Type': 'aplication/json;charset=utf-8'
+              },
+              body: e.target.dataset.tipocarroceria
+            }
+            const del = fetch(`http://localhost:3000/carroceria/${options.body}`, options)
+              .then(() => {
+                Swal.fire(
+                  'Borrado!',
+                  'El registro ha sido borrado.',
+                  'success'
+                ).then(() => {
+                  window.location.reload()
+                })
+              })
+          }
+        })
+
       }
     })
 
+    d.addEventListener('change', e => {
+      if(e.target.matches(`select[name="${TABLE_NAME}"]`)){
+        const $select = d.querySelector(`select[name="${TABLE_NAME}"]`)
+
+        const getSelectedOption = Array.from($select.options).find(
+          option => option.textContent.split('.')[1].endsWith($select.value) 
+        )
+
+        $inputIdClase.value = getSelectedOption.textContent.split('.')[0]
+      } 
+    })
+
   </script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->

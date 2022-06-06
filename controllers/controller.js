@@ -5,7 +5,7 @@ const vehiculo_controller = {
     const rows = await pool.query(
       "SELECT CONCAT(C.Nombre , ' ' , C.Apellido) AS NombreCompleto,  C.IdCliente AS IdCliente, M.IDModelo, Co.CodigoColor, Ca.TipoCarroceria, CV.Clase,   C.Telefono AS Contacto, Placa, Ma.NombreMarca AS Marca, M.NombreModelo AS Modelo, V.Combustible AS Combustible, V.Año AS Anio, Ca.Nombre AS Carroceria, CV.Clase AS ClaseVehiculo, Co.NombreColor AS ColorBase, CONCAT(V.Kilometraje,' km') As DistanciaRecorrida FROM Vehiculo AS V INNER JOIN Cliente AS C ON V.IdCliente = C.IdCliente INNER JOIN Modelo AS M ON V.IDModelo = M.IDModelo INNER JOIN Marca AS Ma ON M.IDMarca = Ma.IDMarca INNER JOIN Carroceria AS Ca ON V.TipoCarroceria = Ca.TipoCarroceria INNER JOIN ClaseVehiculo AS CV ON Ca.IDClase = CV.IDClase INNER JOIN Color AS Co ON V.CodigoColor = Co.CodigoColor WHERE V.Estado = 1")
 
-    const cliente = await pool.query("SELECT * FROM cliente") 
+    const cliente = await pool.query("SELECT * FROM cliente WHERE Estado = 1") 
     const TipoCarroceria = await pool.query("SELECT * FROM carroceria")
     const Modelo = await pool.query("SELECT * FROM modelo")
     const color = await pool.query("SELECT * FROM color ")

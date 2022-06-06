@@ -1,6 +1,7 @@
 {{>header}}
+
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+  <div class="wrapper">
     {{! Navbar }}
     {{>nav}}
     {{! /.navbar }}
@@ -43,8 +44,8 @@
                             <label for="Nombre">Nombres</label>
                             <input name="Nombre" title="Nombre solo acepta letras y espacios en blanco"
                               class="form-control" type="text">
-                              <input name="IdCliente" style="display: none;"
-                              class="form-control" type="text" value={{id}}>
+                            <input name="IdCliente" style="display: none;" class="form-control" type="text"
+                              value={{id}}>
                           </div>
                           <div class="form-group">
                             <label for="Apellido">Apellidos</label>
@@ -69,7 +70,7 @@
                           <div class="form-group">
                             <button type="submit" class="btn btn-primary"> <i class="fa fa-plus nav-icon pr-2"></i>
                               Agregar</button>
-                            <button type="button" class="btn btn-default   float-right"> <i
+                            <button type="button" class="btn btn-default btn-clean float-right"> <i
                                 class="fa fa-trash nav-icon pr-2"></i>Limpiar</button>
                           </div>
                           <div class="form-group">
@@ -82,7 +83,8 @@
                         </div>
                         <div class="card-body">
                           <a href="/vehiculo" type="button" class="btn btn-outline-secondary ">
-                            Ir al formulario de Vehiculos<i class="fa fa-angle-double-right float-right align-middle pl-2 nav-icon"></i>
+                            Ir al formulario de Vehiculos<i
+                              class="fa fa-angle-double-right float-right align-middle pl-2 nav-icon"></i>
                           </a>
                         </div>
                       </div>
@@ -109,27 +111,27 @@
                     </thead>
                     <tbody>
                       {{#if condicion }}
-                        {{#each clientes }}
-                          <tr>
-                            <td>{{this.IdCliente}}</td>
-                            <td>{{this.Nombre}}</td>
-                            <td>{{this.Apellido}}</td>
-                            <td>{{this.Telefono}}</td>
-                            <td>
-                              <a href="#title" class="btn btn-edit">
-                                <i class="nav-icon fas fa-edit" 
-                                  data-idcliente={{this.IdCliente}}
-                                  data-nombre={{this.Nombre}}
-                                  data-apellido={{this.Apellido}}
-                                  data-telefono={{this.Telefono}}>
-                                </i>
-                              </a>
-                              <button class="btn btn-delete">
-                                <i class="nav-icon fas fa-trash"></i>
-                              </button>
-                            </td>
-                          </tr>
-                        {{/each}}
+                      {{#each clientes }}
+                      <tr>
+                        <td>{{this.IdCliente}}</td>
+                        <td>{{this.Nombre}}</td>
+                        <td>{{this.Apellido}}</td>
+                        <td>{{this.Telefono}}</td>
+                        <td>
+                          <a href="#title" class="btn btn-edit" data-idcliente={{this.IdCliente}}
+                              data-nombre={{this.Nombre}} data-apellido={{this.Apellido}}
+                              data-telefono={{this.Telefono}}>
+                            <i class="nav-icon fas fa-edit" data-idcliente={{this.IdCliente}}
+                              data-nombre={{this.Nombre}} data-apellido={{this.Apellido}}
+                              data-telefono={{this.Telefono}}>
+                            </i>
+                          </a>
+                          <button class="btn btn-delete" data-idcliente={{this.IdCliente}}>
+                            <i class="nav-icon fas fa-trash" data-idcliente={{this.IdCliente}}></i>
+                          </button>
+                        </td>
+                      </tr>
+                      {{/each}}
                       {{/if}}
                     </tbody>
                   </table>
@@ -152,72 +154,112 @@
       {{! Control sidebar content goes here }}
     </aside>
     {{! /.control-sidebar }}
-{{>footer}}
-  {{! ./wrapper }}
+    {{>footer}}
+    {{! ./wrapper }}
 
-  <script>
-    const d = document;
+    <script>
+      const d = document;
 
-    const $inputNombre = d.querySelector('input[name="Nombre"]'),
-    $inputApellido = d.querySelector('input[name="Apellido"]'),
-    $inputTelefono = d.querySelector('input[name="Telefono"]'),
-    $inputId = d.querySelector('input[name="IdCliente"]')
+      const $inputNombre = d.querySelector('input[name="Nombre"]'),
+        $inputApellido = d.querySelector('input[name="Apellido"]'),
+        $inputTelefono = d.querySelector('input[name="Telefono"]'),
+        $inputId = d.querySelector('input[name="IdCliente"]')
 
-    const id = `{{id}}`
+      d.addEventListener('click', e => {
+        console.log(e.target.classList)
 
-    $inputId.value = id
+        if (e.target.matches('.btn.btn-edit > *, .btn.btn-edit')) {
+          $inputNombre.value = e.target.dataset.nombre;
+          $inputApellido.value = e.target.dataset.apellido;
+          $inputTelefono.value = e.target.dataset.telefono;
+          $inputId.value = e.target.dataset.idcliente
+        }
 
-    d.addEventListener('click', e => {
+        if (e.target.matches('button.btn.btn-delete > *, .btn-btn-delete')) {
+          const id = e.target.dataset.idcliente
+          Swal.fire({
+            title: 'Esta seguro que desea eliminar este registro?',
+            text: "No sera capaz de revertir esto",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, estoy seguro',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              console.log('confirmed')
+              let options = {
+                method: 'delete',
+                headers: {
+                  'Content-type': 'aplication/json; charset=utf-8'
+                },
+                body: id
+              }
+              const deleteRow = fetch(`http://localhost:3000/cliente/${id}`, options)
+              .then(() => {
+                  Swal.fire({
+                    title: 'Borrado',
+                    text: 'El registro se ha borrado con exito',
+                    icon: 'success'
+                  })
+                  .then(()=>{
+                    window.location.reload()
+                  })
+                })
+            }
+          })
+        }
 
-      if(e.target.matches('.nav-icon.fas.fa-edit')){
-        $inputNombre.value = e.target.dataset.nombre;
-        $inputApellido.value = e.target.dataset.apellido;
-        $inputTelefono.value = e.target.dataset.telefono;
-        $inputId.value = e.target.dataset.idcliente
-      }
-    })
+        if(e.target.matches('.btn-clean')){
+          $inputApellido.value = null
+          $inputNombre.value = null
+          $inputTelefono.value = null
+        }
+      })
 
-  </script>
-  <!-- jQuery -->
-  <script src="../../plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- DataTables  & Plugins -->
-  <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>\\
-  <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-  <script src="../../plugins/jszip/jszip.min.js"></script>
-  <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../../dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="../../dist/js/demo.js"></script>
-  <!-- Page specific script -->
-  <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
+    </script>
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>\\
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
       });
-    });
-  </script>
-
-
+    </script>
 </body>
+
 </html>

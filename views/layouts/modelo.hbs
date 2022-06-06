@@ -223,18 +223,16 @@
         if (e.target === $btnNuevo ) {
           $btnAction.textContent = $btnNuevo.textContent
           if (document.querySelector("select[name='marca']") != null) {
-
             d.querySelector('select[name="marca"]').parentNode.removeChild(d.querySelector('select[name="marca"]'))
           }
           if (document.querySelector("input[name='marca']") == null) {
-
             $divInputGroupPrepend.insertAdjacentElement('afterend', createInputMarca())
           }
         }
         else if (e.target === $btnRegistrados) {
           $btnAction.textContent = $btnRegistrados.textContent
+          
           if (document.querySelector("input[name='marca']") != null) {
-
             d.querySelector('input[name="marca"]').parentNode.removeChild(d.querySelector('input[name="marca"]'))
           }
           if (document.querySelector("select[name='marca']") == null) {
@@ -244,7 +242,6 @@
       }
 
       if (e.target.matches('.btn.btn-edit > *, .btn.btn-edit')) {
-
         d.querySelector('input[name="NombreModelo"]').value = e.target.dataset.modelo;
         $btnAction.textContent = $btnNuevo.textContent
 
@@ -261,6 +258,7 @@
         $inputIdModelo.value = e.target.dataset.idmodelo
         d.querySelector('input[name="marca"]').setAttribute('readonly','true')
       }
+
       if (e.target.matches('.btn.btn-delete > *, .btn.btn-delete')) {
         Swal.fire({
           title: 'Esta seguro que desea eliminar este registro?',

@@ -6,9 +6,13 @@ const carroceria_controller = {
       `SELECT ca.TipoCarroceria, ca.Nombre, ca.IDClase, cl.Clase
       FROM carroceria AS ca
       INNER JOIN clasevehiculo AS cl ON 
-      ca.IDClase = cl.IDClase`
+      ca.IDClase = cl.IDClase WHERE ca.Estado = 1`
     );
     const clasevehiculo = await pool.query("SELECT * FROM clasevehiculo");
+
+    const maxId = await pool.query("SELECT (MAX(IDClase)+1) as maxId FROM clasevehiculo")
+
+    const maxTipoCarroceria = await pool.query('SELECT (MAX(TipoCarroceria)+1) AS idTipoCarroceria FROM carroceria')
 
     if (rows) {
       res
@@ -17,6 +21,8 @@ const carroceria_controller = {
           title: "Vehiculo | carroceria",
           registros: rows,
           clasevehiculo,
+          idClase: maxId[0].maxId,
+          idTipoCarroceria : maxTipoCarroceria[0].idTipoCarroceria
         });
     } else {
       res.status(404);
@@ -24,16 +30,10 @@ const carroceria_controller = {
     }
   },
   guardarcarroceria: async (req, res, next) => {
-    const values = req.body;
-    const carroceria = await pool.query(
-      "SELECT * FROM carroceria WHERE TipoCarroceria = ?",
-      values.TipoCarroceria
-    );
+     const { TipoCarroceria, Nombre, IDClase, Clase } = req.body;
 
-    if (carroceria.length > 0) {
-      const result = await pool.query("UPDATE carroceria SET Nombre = ? WHERE TipoCarroceria = ?", [
-        values.Nombrecarroceria, values.TipoCarroceria
-      ]);
+      const result = await pool.query("CALL SP_GUARDAR_CARROCERIA_CLASE(?,?,?,?)", 
+      [TipoCarroceria, Nombre, IDClase, Clase]);
       
       if (result) 
          res.status(202).redirect("/carroceria");
@@ -41,38 +41,8 @@ const carroceria_controller = {
         res.send("Error not modified");
         next();
       }
-    } 
-    
-    else {
-      let newModel = {
-        TipoCarroceria : values.TipoCarroceria,
-        Nombrecarroceria : values.Nombrecarroceria,
-
-      }
-
-      const marca = await pool.query('SELECT * FROM marca WHERE IDMarca = ?', newModel.IDMarca)
-
-      if(marca.length > 0){
-        const result = await pool.query(
-          'INSERT INTO carroceria (TipoCarroceria, Nombrecarroceria, IDMarca) VALUES(?,?,?)', 
-          [newModel.TipoCarroceria, newModel.Nombrecarroceria, newModel.IDMarca])
-          if (result) res.status(201).redirect("/carroceria");
-          else {
-            res.send("Not Inserted", result.ErrorPacket);
-            next();
-          }
-      }else{
-        const result = await pool.query("call SP_INSERTAR_MODEL_MARCA (?,?,?,?)",
-         [newModel.IDMarca, newModel.NombreMarca, newModel.TipoCarroceria, newModel.Nombrecarroceria]);
-         if (result) 
-          res.status(201).redirect("/carroceria");
-         else {
-          res.send("Not Inserted", result.ErrorPacket);
-          next();
-        }
-      }
-    }
   },
+
   deletecarroceria: async (req, res) => {
     const id = req.params.id;
     const getcarroceria = await pool.query(
@@ -87,7 +57,6 @@ const carroceria_controller = {
       )
       console.log(dropcarroceria)
       res.redirect('/carroceria')
-      
     }
   }
 }
