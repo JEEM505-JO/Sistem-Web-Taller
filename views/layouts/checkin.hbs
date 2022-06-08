@@ -7,7 +7,6 @@
     {{>nav}}
     <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
     {{>aside}}
 
     <!-- Content Wrapper. Contains page content -->
@@ -26,33 +25,31 @@
               </ol>
             </div>
           </div>
-        </div><!-- /.container-fluid -->
+        </div>
       </section>
 
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <div class="row">
             <div class="col-12">
 
               <div class="card-body">
-                  <div class="row">
-                <form class="col-md-7">
+                  <form action="/checkin" method="post" class="">
                     <div class="col-md-12">
                       <div class="card card-primary">
                         <div class="card-header">
-                          <h3 class="card-title">Datos del CheckIn</h3>
+                          <h3 id="title" class="card-title">Datos del CheckIn</h3>
                         </div>
 
                         <div class="card-body">
                           <div class="row">
                             <div class="form-group col-12">
-                              <label for="TrabajoSolicitado">Trabajo Solicitado</label>
-                              <input name="TrabajoSolicitado" pattern="" title="Trabajo Solicitado" class="form-control"
+                              <label for="Observacion">Observación</label>
+                              <input name="Observacion" title="Observacion" required class="form-control"
                                 type="text">
                             </div>
                           </div>
-
+                          <input type="text" name="id" style="display: none;">
                           <div class="row">
                             <div class="form-group col-6">
                               <label for="Placa">Placa</label>
@@ -62,16 +59,10 @@
                                     <i class="fa fa-plus nav-icon"></i>
                                   </a>
                                 </div>
-                                <select name="Placa" class="form-control" title="Placa" id="idPlaca">
-                                  <option value="1">
-                                    1. <span>Placa</span>
-                                  </option>
-                                  <option value="2">
-                                    2. <span>Placa</span>
-                                  </option>
-                                  <option value="3">
-                                    3. <span>Placa</span>
-                                  </option>
+                                <select name="Placa" required class="form-control" title="Placa" id="idPlaca">
+                                  {{#each placas}}
+                                  <option value={{this.Placa}}>{{this.Placa}}</option>
+                                  {{/each}}
                                 </select>
                               </div>
                             </div>
@@ -84,16 +75,10 @@
                                     <i class="fa fa-plus nav-icon"></i>
                                   </a>
                                 </div>
-                                <select name="mecanico" class="form-control" title="Mecanico" id="idmecanico">
-                                  <option value="1">
-                                    1. <span>Mecanico</span>
-                                  </option>
-                                  <option value="2">
-                                    2. <span>Mecanico</span>
-                                  </option>
-                                  <option value="3">
-                                    3. <span>Mecanico</span>
-                                  </option>
+                                <select name="mecanico" required class="form-control" title="Mecanico" id="idmecanico">
+                                  {{#each mecanicos}}
+                                  <option value={{this.IDMecanico}}>{{this.Mecanico}}</option>
+                                  {{/each}}
                                 </select>
                               </div>
                             </div>
@@ -111,22 +96,14 @@
                                 </div>
                               </div>
                             </div>
-
                             <div class="form-group col-6">
-                              <label>Fecha de Salida</label>
-                              <div class="input-group date" id="data2" data-target-input="nearest">
-                                <input name="FechaSalida" type="text" class="form-control datetimepicker-input"
-                                  data-target="#data2">
-                                <div class="input-group-append" data-target="#data2" data-toggle="datetimepicker">
-                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                              </div>
+                              <label for="Sintoma">Sintoma</label>
+                              <select name="Sintoma" class="form-control" required="true">
+                                {{#each sintoma}}
+                                <option value={{this.CodSintoma}}>{{this.SintomaPresente}}</option>
+                                {{/each}}
+                              </select>
                             </div>
-
-                            <textarea name="accesorios" id="idaccesorios" cols="30" rows="10" class="d-none">
-
-                            </textarea>
-
                           </div>
                         </div>
                         <div class="card-footer">
@@ -142,552 +119,79 @@
                         </div>
                       </div>
                     </div>
-                </form>
-                <div class="col-md-5">
-                  <div class="card card-primary">
-                    <div class="card-header">
-                      <h3 class="card-title">Accesorios</h3>
-                    </div>
-                      <div class="card-body pb-2">
-                        <form>
-                         <div class="row">
-                          <div class="form-group col-5">
-                            <label for="Accesorio">Accesorio</label>
-                            <input name="Accesorio" pattern="" title="Accesorio" class="form-control" type="text">
-                          </div>
-                          <div class="form-group col-4">
-                            <label for="estado">Estado</label>
-                            <div class="input-group">
-                              <select name="estado" class="form-control" title="Estado" id="Estado">
-                                <option value="1">
-                                  <span>Usado</span>
-                                </option>
-                                <option value="2">
-                                  <span>Nuevo</span>
-                                </option>
-                                <option value="3">
-                                  <span>Bueno</span>
-                                </option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="form-group mt-4 p-2">
-                            <button class="form-control btn btn-primary">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
-                        </div>
-                        </form>
-
-                  <div class="card">
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive mt-3 p-0" style="height:245px">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Task</th>
-                            <th style="width: 40px">Label</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1.</td>
-                            <td>Update software</td>
-                            <td><span class="badge bg-danger">55%</span></td>
-                          </tr>
-                          <tr>
-                            <tr>
-                            <td>1.</td>
-                            <td>Update software</td>
-                            <td><span class="badge bg-danger">55%</span></td>
-                          </tr>
-                          <tr>
-                            <td>2.</td>
-                            <td>Clean database</td>
-                            
-                            <td><span class="badge bg-warning">70%</span></td>
-                          </tr>
-                          <tr>
-                            <td>3.</td>
-                            <td>Cron job running</td>
-                          
-                            <td><span class="badge bg-primary">30%</span></td>
-                          </tr>
-                          <tr>
-                            <td>4.</td>
-                            <td>Fix and squish bugs</td>
-                          
-                            <td><span class="badge bg-success">90%</span></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-              <!-- /.card-body -->
-                  </div>
-                </div>
+                  </form>
               </div>
             </div>
-          </div>  
+
+            <div class="card col-12">
+              <div class="card-header">
+                <!-- Consulta de los Modelos INNER JOIN Marcas -->
+                <h3 class="card-title">Registro de CheckIn</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Codigo Admisión</th>
+                      <th>Placa</th>
+                      <th>Fecha de Ingreso</th>
+                      <th>Observación</th>
+                      <th>Mecanico</th>
+                      <th>Sintoma</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each rows}}
+                    {{#if empty}}
+                      <p>{{this.message}}</p>
+                    {{/if}}
+                    <tr>
+                      <td>{{this.CodCheckIN}}</td>
+                      <td>{{this.Placa}}</td>
+                      <td>{{this.FechaIngreso}}</td>
+                      <td>{{this.Observacion}}</td>
+                      <td>{{this.Mecanico}}</td>
+                      <td>{{this.Sintoma}}</td>
+                      <td>
+                        <a href="#title" class="btn btn-edit"
+                         data-codigo={{this.CodCheckIN}} 
+                         data-placa={{this.Placa}}
+                         data-fecha="{{this.FechaIngreso}}"
+                         data-observacion="{{ this.Observacion }}"
+                         data-mecanico="{{this.Mecanico}}"
+                         data-sintoma="{{this.Sintoma}}">
+                          <i class="nav-icon fas fa-edit" 
+                          data-codigo={{this.CodCheckIN}} 
+                          data-placa={{this.Placa}} 
+                          data-fecha="{{this.FechaIngreso}}"
+                          data-observacion="{{ this.Observacion }}"
+                          data-mecanico="{{this.Mecanico}}"  
+                          data-sintoma="{{this.Sintoma}}"></i>
+                        </a>
+                        <button class="btn btn-delete" data-codigo={{this.CodCheckIN}}>
+                          <i class="nav-icon fas fa-trash" style="flex: 1;" data-codigo={{this.CodCheckIN}}></i>
+                        </button>
+                      </td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
         </div>
+        <!-- /.row -->
     </div>
-
-
-    <div class="card col-12">
-      <div class="card-header">
-        <!-- Consulta de los Modelos INNER JOIN Marcas -->
-        <h3 class="card-title">Registro de CheckIn</h3>
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body">
-        <table id="example2" class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Codigo Admisión</th>
-              <th>Placa</th>
-              <th>Fecha de Ingreso</th>
-              <th>Fecha de Salida</th>
-              <th>Trabajo Solicitado</th>
-              <th>Id de Mecanico</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Trident</td>
-              <td>Internet
-                Explorer 4.0
-              </td>
-              <td>Win 95+</td>
-              <td> 4</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Trident</td>
-              <td>Internet
-                Explorer 5.0
-              </td>
-              <td>Win 95+</td>
-              <td>5</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Trident</td>
-              <td>Internet
-                Explorer 5.5
-              </td>
-              <td>Win 95+</td>
-              <td>5.5</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Trident</td>
-              <td>Internet
-                Explorer 6
-              </td>
-              <td>Win 98+</td>
-              <td>6</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Trident</td>
-              <td>Internet Explorer 7</td>
-              <td>Win XP SP2+</td>
-              <td>7</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Trident</td>
-              <td>AOL browser (AOL desktop)</td>
-              <td>Win XP</td>
-              <td>6</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Firefox 1.0</td>
-              <td>Win 98+ / OSX.2+</td>
-              <td>1.7</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Firefox 1.5</td>
-              <td>Win 98+ / OSX.2+</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Firefox 2.0</td>
-              <td>Win 98+ / OSX.2+</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Firefox 3.0</td>
-              <td>Win 2k+ / OSX.3+</td>
-              <td>1.9</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Camino 1.0</td>
-              <td>OSX.2+</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Camino 1.5</td>
-              <td>OSX.3+</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Netscape 7.2</td>
-              <td>Win 95+ / Mac OS 8.6-9.2</td>
-              <td>1.7</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Netscape Browser 8</td>
-              <td>Win 98SE+</td>
-              <td>1.7</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Netscape Navigator 9</td>
-              <td>Win 98+ / OSX.2+</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.0</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>1</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.1</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>1.1</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.2</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>1.2</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.3</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>1.3</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.4</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>1.4</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.5</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>1.5</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.6</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>1.6</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.7</td>
-              <td>Win 98+ / OSX.1+</td>
-              <td>1.7</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Mozilla 1.8</td>
-              <td>Win 98+ / OSX.1+</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Seamonkey 1.1</td>
-              <td>Win 98+ / OSX.2+</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Gecko</td>
-              <td>Epiphany 2.20</td>
-              <td>Gnome</td>
-              <td>1.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Webkit</td>
-              <td>Safari 1.2</td>
-              <td>OSX.3</td>
-              <td>125.5</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Webkit</td>
-              <td>Safari 1.3</td>
-              <td>OSX.3</td>
-              <td>312.8</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Webkit</td>
-              <td>Safari 2.0</td>
-              <td>OSX.4+</td>
-              <td>419.3</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Webkit</td>
-              <td>Safari 3.0</td>
-              <td>OSX.4+</td>
-              <td>522.1</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Webkit</td>
-              <td>OmniWeb 5.5</td>
-              <td>OSX.4+</td>
-              <td>420</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Webkit</td>
-              <td>iPod Touch / iPhone</td>
-              <td>iPod</td>
-              <td>420.1</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Webkit</td>
-              <td>S60</td>
-              <td>S60</td>
-              <td>413</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera 7.0</td>
-              <td>Win 95+ / OSX.1+</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera 7.5</td>
-              <td>Win 95+ / OSX.2+</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera 8.0</td>
-              <td>Win 95+ / OSX.2+</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera 8.5</td>
-              <td>Win 95+ / OSX.2+</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera 9.0</td>
-              <td>Win 95+ / OSX.3+</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera 9.2</td>
-              <td>Win 88+ / OSX.3+</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera 9.5</td>
-              <td>Win 88+ / OSX.3+</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Opera for Wii</td>
-              <td>Wii</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Nokia N800</td>
-              <td>N800</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Presto</td>
-              <td>Nintendo DS browser</td>
-              <td>Nintendo DS</td>
-              <td>8.5</td>
-              <td>C/A<sup>1</sup></td>
-            </tr>
-            <tr>
-              <td>KHTML</td>
-              <td>Konqureror 3.1</td>
-              <td>KDE 3.1</td>
-              <td>3.1</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>KHTML</td>
-              <td>Konqureror 3.3</td>
-              <td>KDE 3.3</td>
-              <td>3.3</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>KHTML</td>
-              <td>Konqureror 3.5</td>
-              <td>KDE 3.5</td>
-              <td>3.5</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Tasman</td>
-              <td>Internet Explorer 4.5</td>
-              <td>Mac OS 8-9</td>
-              <td>-</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Tasman</td>
-              <td>Internet Explorer 5.1</td>
-              <td>Mac OS 7.6-9</td>
-              <td>1</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Tasman</td>
-              <td>Internet Explorer 5.2</td>
-              <td>Mac OS 8-X</td>
-              <td>1</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>NetFront 3.1</td>
-              <td>Embedded devices</td>
-              <td>-</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>NetFront 3.4</td>
-              <td>Embedded devices</td>
-              <td>-</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>Dillo 0.8</td>
-              <td>Embedded devices</td>
-              <td>-</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>Links</td>
-              <td>Text only</td>
-              <td>-</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>Lynx</td>
-              <td>Text only</td>
-              <td>-</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>IE Mobile</td>
-              <td>Windows Mobile 6</td>
-              <td>-</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>PSP browser</td>
-              <td>PSP</td>
-              <td>-</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Other browsers</td>
-              <td>All others</td>
-              <td>-</td>
-              <td>-</td>
-              <td>U</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th>Rendering engine</th>
-              <th>Browser</th>
-              <th>Platform(s)</th>
-              <th>Engine version</th>
-              <th>CSS grade</th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-  </div>
-  <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  </div>
-  <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
+    </section>
+    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-
-
 
   <footer class="main-footer">
     <strong>Copyright &copy; 2022 <a href="#">Taller Hno Flores &REG;</a>.</strong>
@@ -704,13 +208,69 @@
   <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
+  <!-- date-range-picker -->
+  <script>
+    const d = document
 
+    const $inputObservacion = d.querySelector('input[name="Observacion"]'),
+      $selectPlaca = d.querySelector('select[name="Placa"]'),
+      $selectMecanico = d.querySelector('select[name="mecanico"]'),
+      $dateFechaIngre = d.querySelector('input[name="FechaIngreso"]'),
+      $selectSintoma = d.querySelector('select[name="Sintoma"]'),
+      $inputId = d.querySelector('input[name="id"]')
 
-  <!-- jQuery -->
+    d.addEventListener('click', e =>{ 
+      if(e.target.matches('.btn.btn-edit > *, .btn.btn-edit')){
+        $inputObservacion.value = e.target.dataset.observacion 
+        $selectPlaca.value = e.target.dataset.placa
+        $dateFechaIngre.value = e.target.dataset.fecha 
+        $inputId.value = e.target.dataset.codigo
+
+        const getMecanico = Array.from($selectMecanico.options).find(option => option.textContent === e.target.dataset.mecanico)
+        console.log(getMecanico)
+        $selectMecanico.value = getMecanico.value
+      
+        const getSintoma = Array.from($selectSintoma.options).find(option => option.textContent === e.target.dataset.sintoma)
+        $selectSintoma.value = getSintoma.value
+      }
+      if(e.target.matches('.btn.btn-delete >*, .btn.btn-delete')){
+        Swal.fire({
+          title: 'Esta seguro que desea eliminar este registro?',
+          text: "No sera capaz de revertir esto",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, estoy seguro',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let options = {
+              method: 'delete',
+              headers: {
+                'Content-Type': 'aplication/json;charset=utf-8'
+              },
+              body: e.target.dataset.codigo
+            }
+            const del = fetch(`http://localhost:3000/checkin/${options.body}`, options)
+              .then(() => {
+                Swal.fire(
+                  'Borrado!',
+                  'El registro ha sido borrado.',
+                  'success'
+                ).then(() => {
+                  window.location.reload()
+                })
+              })
+          }
+        })
+
+      }
+    })
+  </script>
+    <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- DataTables  & Plugins -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -720,21 +280,14 @@
   <script src="../../plugins/jszip/jszip.min.js"></script>
   <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
   <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-
-
-
-
-
-  <!-- date-range-picker -->
-
   <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-  <script src="../../plugins/jquery/jquery.min.js"></script>
+  {{!-- <script src="../../plugins/jquery/jquery.min.js"></script>--}}
   <!-- Bootstrap 4 -->
   <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Select2 -->
-  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+   <script src="../../plugins/select2/js/select2.full.min.js"></script>
   <!-- Bootstrap4 Duallistbox -->
   <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
   <!-- InputMask -->
@@ -751,13 +304,29 @@
   <!-- BS-Stepper -->
   <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
   <!-- dropzonejs -->
-  <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+  <script src="../../plugins/dropzone/min/dropzone.min.js"></script> 
   <!-- AdminLTE App -->
   <script src="../../dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
-
-  <!-- Page specific script -->
+    <!-- Page specific script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
   <script>
     $(function () {
       //Initialize Select2 Elements
@@ -769,9 +338,9 @@
       })
 
       //Datemask dd/mm/yyyy
-      $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+      $('#datemask').inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' })
       //Datemask2 mm/dd/yyyy
-      $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+      $('#datemask2').inputmask('mm-dd-yyyy', { 'placeholder': 'mm-dd-yyyy' })
       //Money Euro
       $('[data-mask]').inputmask()
 
@@ -791,7 +360,7 @@
         timePicker: true,
         timePickerIncrement: 30,
         locale: {
-          format: 'MM/DD/YYYY hh:mm A'
+          format: 'DD-MM-YYYY HH:MI:SS'
         }
       })
       //Date range as a button

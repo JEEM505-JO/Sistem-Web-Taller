@@ -17,9 +17,7 @@ const express = require('express'),
         })
     })
 
-    router.get('/checkin', (req, res)=>{
-        res.render('layouts/checkin.hbs', {title: 'Taller Hno Flores | Chekc In'})
-    })
+   // router.get('/checkin', (req, res)=> res.render('layouts/checkin.hbs'))
 
     router.get('/orden', (req, res)=> {
         res.render('layouts/orden.hbs', { title: 'Taller Hno Flores | Ordenes'})

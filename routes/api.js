@@ -1,5 +1,6 @@
 const carroceria_controller = require('../controllers/carroceria_controller')
 const colorController = require('../controllers/color_controller')
+const checkinController = require('../controllers/checkinController')
 
 const express = require('express'),
     router = express.Router(),
@@ -55,6 +56,9 @@ router.delete('/carroceria/:id', carroceria_controller.deletecarroceria)
 
 router.get('/color', colorController.getColor)
 
+router.post('/color', colorController.guardarColor)
+
+router.delete('/color/:id', colorController.deleteColor)
 //Cliente
 
 router.get('/cliente', clienteController.getCliente)
@@ -62,6 +66,15 @@ router.get('/cliente', clienteController.getCliente)
 router.post('/cliente', clienteController.guardarCliente)
 
 router.delete('/cliente/:id', clienteController.deleteCliente)
+
+
+//checkIn
+
+router.get('/checkin', checkinController.getRows)
+
+router.post('/checkin', checkinController.guardarCheckin)
+
+router.delete('/checkin/:id', checkinController.deleteCheckin)
 
 module.exports = router
 
