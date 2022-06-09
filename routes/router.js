@@ -17,12 +17,6 @@ const express = require('express'),
         })
     })
 
-   // router.get('/checkin', (req, res)=> res.render('layouts/checkin.hbs'))
-
-    router.get('/orden', (req, res)=> {
-        res.render('layouts/orden.hbs', { title: 'Taller Hno Flores | Ordenes'})
-    })
-
     router.get('/mecanico', (req, res)=>{
         res.render('layouts/mecanico.hbs', {title: 'Taller Hno Flores | Empleados'})
     })

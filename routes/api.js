@@ -8,7 +8,8 @@ const express = require('express'),
     model = require('../models/model'),
     vehiculoController = require('../controllers/controller'),
     modeloController = require('../controllers/modelo_controller'),
-    clienteController = require('../controllers/cliente_controller')
+    clienteController = require('../controllers/cliente_controller'),
+    orden = require('../controllers/ordenController')
 
 //VEHICULO
 const VEHICULO_TABLE = 'vehiculo', ID_VEHICULO = 'Placa'
@@ -75,6 +76,14 @@ router.get('/checkin', checkinController.getRows)
 router.post('/checkin', checkinController.guardarCheckin)
 
 router.delete('/checkin/:id', checkinController.deleteCheckin)
+
+//Ordenes
+
+router.get('/orden', orden.getRows)
+
+router.post('/orden', orden.guardarOrdenes)
+
+router.delete('/orden/:id', orden.deleteOrden)
 
 module.exports = router
 
