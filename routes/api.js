@@ -1,6 +1,7 @@
 const carroceria_controller = require('../controllers/carroceria_controller')
 const colorController = require('../controllers/color_controller')
 const checkinController = require('../controllers/checkinController')
+const mecanicoController = require('../controllers/mecanicoController')
 
 const express = require('express'),
     router = express.Router(),
@@ -85,5 +86,12 @@ router.post('/orden', orden.guardarOrdenes)
 
 router.delete('/orden/:id', orden.deleteOrden)
 
+//Mecanico 
+
+router.get('/mecanico', mecanicoController.getRows)
+
+router.post('/mecanico', mecanicoController.guardarMecanico)
+
+router.delete('/mecanico/:id', mecanicoController.deleteMecanico)
 module.exports = router
 

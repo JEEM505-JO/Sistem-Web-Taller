@@ -16,11 +16,7 @@ const express = require('express'),
             NumeroProductos:NumeroProductos[0]['Total Productos'] 
         })
     })
-
-    router.get('/mecanico', (req, res)=>{
-        res.render('layouts/mecanico.hbs', {title: 'Taller Hno Flores | Empleados'})
-    })
-
+    
     router.get('/falla', (req, res)=> {
         res.render('layouts/falla.hbs', { title: 'Taller Hno Flores | Fallas'})
 
