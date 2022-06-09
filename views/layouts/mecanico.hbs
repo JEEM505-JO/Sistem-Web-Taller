@@ -1,11 +1,9 @@
 {{>header}}
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
     {{! Navbar }}
     {{>nav}}
     {{! /.navbar }}
-
     {{! Main Sidebar Container }}
     {{>aside}}
 
@@ -27,39 +25,37 @@
           </div>
         </div>{{! /.container-fluid }}
       </section>
-
       {{! Main content }}
       <section class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-
               <div class="card-body">
-                <form>
+                <form action="/mecanico" method="post">
                   <div class="row">
                     <div class="col-md-8">
                       <div class="card card-primary">
                         <div class="card-header">
-                          <h3 class="card-title">Datos del Empleado</h3>
+                          <h3 id="title" class="card-title">Datos del Empleado</h3>
                         </div>
-
                         <div class="card-body">
                           <div class="row">
+                            <input type="text" name="IDMecanico" value={{maxId}} style="display: none;">
                            <div class="form-group col-md-6">
                             <label for="Nombre">Nombres</label>
-                            <input name="Nombre" pattern="" title="Nombre solo acepta letras y espacios en blanco"
+                            <input name="Nombre" required title="Nombre solo acepta letras y espacios en blanco"
                               class="form-control" type="text">
                           </div>
                           <div class="form-group col-md-6">
                             <label for="Apellido">Apellidos</label>
-                            <input name="Apellido" pattern="" title="" class="form-control" type="text">
+                            <input name="Apellido" required title="" class="form-control" type="text">
                           </div>
                           </div>
                           <div class="row">
                           <div class="form-group col-md-6">
-                            <label for="estado">Estado</label>
+                            <label for="Estado">Estado</label>
                             <div class="input-group">
-                              <select name="estado" class="form-control" title="Estado" id="Estado">
+                              <select name="Estado" required class="form-control" title="Estado" id="Estado">
                                 <option value="1">
                                   <span>Activo</span>
                                 </option>
@@ -70,40 +66,21 @@
                             </div>
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="especialidad">Especialidad</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <button type="button" class="btn btn-warning dropdown-toggle" id="btn_Action" data-toggle="dropdown" aria-expanded="true">
-                                  Seleccionar Acción
-                                </button>
-                                <ul class="dropdown-menu" style="font-family: Arial, Helvetica, sans-serif;">
-                                  <li class="dropdown-item"><a id="btn_new" type="button">Nueva</a></li>
-                                  <li class="dropdown-divider"></li>
-                                  <li class="dropdown-item"><a id="btn_register" type="button">Registradas</a></li>
-                                </ul>
-                              </div>
-                              <input name="especialidad" pattern="" title="especialidad" id="Marca_input" class="form-control" type="text">
-                              <select name="especialidad" title="Seleccionar especialidad" class="form-control d-none" id="idespecialidad">
-                                <option value="1">1. <span>especialidad</span></option>
-                                <option value="2">2. <span>especialidad</span></option>
-                                <option value="3">3. <span>especialidad</span></option>
+                            <label for="CodEspecialidad">Especialidad</label>
+                              <select name="CodEspecialidad" required title="Seleccionar especialidad" class="form-control" id="idespecialidad">
+                                {{#each especialidades}}
+                                  <option value="{{this.CodEspecialidad}}">{{this.CodEspecialidad}}</option>
+                                {{/each}}
                               </select>
-                            </div>
                           </div>
                           </div>
                           <div class="form-group">
-                            <label for="Jefe">Jefe</label>
+                            <label for="JefeTaller">Jefe</label>
                             <div class="input-group">
-                              <select name="Jefe" class="form-control" title="Jefe" id="Jefe">
-                                <option value="1">
-                                  <span>Nombre del Jefe</span>
-                                </option>
-                                <option value="2">
-                                  <span>Nombre del Jefe</span>
-                                </option>
-                                <option value="3">
-                                  <span>Nombre del Jefe</span>
-                                </option>
+                              <select name="JefeTaller" class="form-control" required title="Jefe" id="Jefe">
+                                {{#each empleados}}
+                                  <option value={{this.id}}>{{this.Nombre}}</option>
+                                {{/each}}
                               </select>
                             </div>
                           </div>
@@ -112,11 +89,9 @@
                     </div>
                     <div class="col-md-4">
                       <div class="card card-primary">
-
                         <div class="card-header">
                           <h3 class="card-title">Acciones</h3>
                         </div>
-
                         <div class="card-body pb-3 pt-4">
                           <div class="form-group">
                             <button type="submit" class="btn btn-primary"> <i class="fa fa-plus nav-icon pr-2"></i>
@@ -132,10 +107,6 @@
                   </div>
                 </form>
               </div>
-
-
-
-
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Registro de los Datos de Clientes</h3>
@@ -148,430 +119,43 @@
                         <th>Id Empleado</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Estado</th>
                         <th>Jefe</th>
                         <th>Id Especialidad</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.5
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 6
-                        </td>
-                        <td>Win 98+</td>
-                        <td>6</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet Explorer 7</td>
-                        <td>Win XP SP2+</td>
-                        <td>7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>AOL browser (AOL desktop)</td>
-                        <td>Win XP</td>
-                        <td>6</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 1.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 1.5</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 2.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 3.0</td>
-                        <td>Win 2k+ / OSX.3+</td>
-                        <td>1.9</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Camino 1.0</td>
-                        <td>OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Camino 1.5</td>
-                        <td>OSX.3+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Netscape 7.2</td>
-                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Netscape Browser 8</td>
-                        <td>Win 98SE+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Netscape Navigator 9</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.1</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.2</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.2</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.3</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.3</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.4</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.4</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.5</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.6</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>1.6</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.7</td>
-                        <td>Win 98+ / OSX.1+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Mozilla 1.8</td>
-                        <td>Win 98+ / OSX.1+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Seamonkey 1.1</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Epiphany 2.20</td>
-                        <td>Gnome</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 1.2</td>
-                        <td>OSX.3</td>
-                        <td>125.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 1.3</td>
-                        <td>OSX.3</td>
-                        <td>312.8</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 2.0</td>
-                        <td>OSX.4+</td>
-                        <td>419.3</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>Safari 3.0</td>
-                        <td>OSX.4+</td>
-                        <td>522.1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>OmniWeb 5.5</td>
-                        <td>OSX.4+</td>
-                        <td>420</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>iPod Touch / iPhone</td>
-                        <td>iPod</td>
-                        <td>420.1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Webkit</td>
-                        <td>S60</td>
-                        <td>S60</td>
-                        <td>413</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 7.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 7.5</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 8.0</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 8.5</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 9.0</td>
-                        <td>Win 95+ / OSX.3+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 9.2</td>
-                        <td>Win 88+ / OSX.3+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera 9.5</td>
-                        <td>Win 88+ / OSX.3+</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Opera for Wii</td>
-                        <td>Wii</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Nokia N800</td>
-                        <td>N800</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Presto</td>
-                        <td>Nintendo DS browser</td>
-                        <td>Nintendo DS</td>
-                        <td>8.5</td>
-                        <td>C/A<sup>1</sup></td>
-                      </tr>
-                      <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.1</td>
-                        <td>KDE 3.1</td>
-                        <td>3.1</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.3</td>
-                        <td>KDE 3.3</td>
-                        <td>3.3</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.5</td>
-                        <td>KDE 3.5</td>
-                        <td>3.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 4.5</td>
-                        <td>Mac OS 8-9</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.1</td>
-                        <td>Mac OS 7.6-9</td>
-                        <td>1</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.2</td>
-                        <td>Mac OS 8-X</td>
-                        <td>1</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>NetFront 3.1</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>NetFront 3.4</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>Dillo 0.8</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>Links</td>
-                        <td>Text only</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>Lynx</td>
-                        <td>Text only</td>
-                        <td>-</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>IE Mobile</td>
-                        <td>Windows Mobile 6</td>
-                        <td>-</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Misc</td>
-                        <td>PSP browser</td>
-                        <td>PSP</td>
-                        <td>-</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Other browsers</td>
-                        <td>All others</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>U</td>
-                      </tr>
+                      {{#each jefe}}
+                        <tr style="background-color: #cbcbcb;">
+                          <td>{{this.IDMecanico}}</td>
+                          <td>{{this.Nombre}}</td>
+                          <td>{{this.Apellido}}</td>
+                          <td>Jefe del Taller</td>
+                          <td>{{this.CodEspecialidad}}</td>
+                          <td>{{this.Estado}}</td>
+                          <td>
+                        </tr>
+                      {{/each}}
+                      {{#each rows}}
+                        <tr>
+                          <td>{{this.IDMecanico}}</td>
+                          <td>{{this.Nombre}}</td>
+                          <td>{{this.Apellido}}</td>
+                          <td>{{this.JefeTaller}}</td>
+                          <td>{{this.CodEspecialidad}}</td>
+                          <td>{{this.Estado}}</td>
+                          <td>
+                            <a href="#title" class="btn btn-edit" data-estado={{this.Estado}} data-idmecanico={{this.IDMecanico}} data-nombre={{this.Nombre}} data-apellido={{this.Apellido}} data-jefe="{{this.JefeTaller}}" data-especialidad="{{this.CodEspecialidad}}">
+                            <i class="nav-icon fas fa-edit" data-estado={{this.Estado}} data-idmecanico={{this.IDMecanico}} data-nombre={{this.Nombre}} data-apellido={{this.Apellido}} data-jefe="{{this.JefeTaller}}" data-especialidad="{{this.CodEspecialidad}}"></i>
+                          </a>
+                          <button class="btn btn-delete" data-idmecanico={{this.IDMecanico}}>
+                            <i class="nav-icon fas fa-trash" data-idmecanico={{this.IDMecanico}}></i>
+                          </button>
+                          </td>
+                        </tr>
+                      {{/each}}
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                      </tr>
-                    </tfoot>
                   </table>
                 </div>
                 {{! /.card-body }}
@@ -587,58 +171,137 @@
       {{! /.content }}
     </div>
     {{! /.content-wrapper }}
-    {{! Control Sidebar }}
     <aside class="control-sidebar control-sidebar-dark">
       {{! Control sidebar content goes here }}
     </aside>
-    {{! /.control-sidebar }}
-  </div>
-  {{! ./wrapper }}
-  <script>
-    const d = document;
-    const $select = d.getElementById('idespecialidad')
-    const $input = d.getElementById('Marca_input')
-    //Boton de Accion
-    const $btnAction = d.getElementById('btn_Action')
-    
-    const $btnNuevo = d.getElementById('btn_new')
-    const $btnRegistrados = d.getElementById('btn_register')
-    
-    d.addEventListener('click',e => {
-      if(e.target === $btnNuevo){
-        $btnAction.textContent = $btnNuevo.textContent
-
-        $select.classList.add('d-none')
-        $input.classList.remove('d-none')
-      }
-      if(e.target === $btnRegistrados){
-        $btnAction.textContent = $btnRegistrados.textContent
-        
-        $input.classList.add('d-none')
-        $select.classList.remove('d-none')
-      }
-    })
-
-  </script>
-
-  {{! Page specific script }}
-  <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        "overflowX" : "30vh"  
-      });
-    });
-  </script>
-
 {{>footer}}
+
+  <script>
+    const d = document,
+    $inputID = d.querySelector('input[name="IDMecanico"]'),
+    $inputNombre = d.querySelector('input[name="Nombre"]'),
+    $inputApellido = d.querySelector('input[name="Apellido"]'),
+    $selectEstado = d.querySelector('select[name="Estado"]'),
+    $selectEspecialidad = d.querySelector('select[name="CodEspecialidad"]'),
+    $selectJefe = d.querySelector('select[name="JefeTaller"]')
+
+    d.addEventListener('click', e => {
+      if(e.target.matches('.btn.btn-edit>*, .btn.btn-edit')){
+        $inputID.value = e.target.dataset.idmecanico
+        $inputNombre.value = e.target.dataset.nombre
+        $inputApellido.value = e.target.dataset.apellido 
+        $selectEstado.value = e.target.dataset.estado 
+        $selectEspecialidad.value = e.target.dataset.especialidad
+        $selectJefe.value = e.target.dataset.jefe
+      }
+
+      if(e.target.matches('.btn.btn-delete>*, .btn.btn-delete')){
+        Swal.fire({
+          title: 'Esta seguro que desea eliminar este registro?',
+          text: "No sera capaz de revertir esto",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, estoy seguro',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let options = {
+              method: 'delete',
+              headers: {
+                'Content-Type': 'aplication/json;charset=utf-8'
+              },
+              body: e.target.dataset.idmecanico
+            }
+            const del = fetch(`http://localhost:3000/mecanico/${options.body}`, options)
+              .then(checkResponseStatus)
+              .then(res => res.json())
+              .then(json =>{
+                
+                if(json.message === 'error') {
+                    Swal.fire({
+                      title : json.alertTitle,
+                      html : json.alertMessage,
+                      icon : json.icon,
+                      showConfirmButton : json.showConfirmButton,
+                      timer : json.timer
+                    }).then(()=>{
+                      window.location.reload()
+                    })
+                  }
+                else if(json.message === 'ok') {
+                    Swal.fire({
+                      title : json.alertTitle,
+                      html : json.alertMessage,
+                      icon : json.icon,
+                      showConfirmButton : json.showConfirmButton,
+                      timer : json.timer
+                    }).then(()=>{
+                      window.location.reload()
+                    })
+                  }
+              })
+              .catch(err => console.log(1, err))
+          }
+        })
+    function checkResponseStatus(res) {
+      if(res.ok){
+        return res
+      } else {
+        throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
+      }
+    }
+  }if(e.target.matches('.btn.btn-default')){
+    $inputID.value = null
+    $inputNombre.value = null
+    $inputApellido.value = null
+    $selectEstado.value = null
+    $selectEspecialidad.value = null
+    $selectJefe.value = null
+  }
+})
+</script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>\\
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+    </script>
+ </body>
+</html>
