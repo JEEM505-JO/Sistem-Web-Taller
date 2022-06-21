@@ -2,7 +2,8 @@ const carroceria_controller = require('../controllers/carroceria_controller')
 const colorController = require('../controllers/color_controller')
 const checkinController = require('../controllers/checkinController')
 const mecanicoController = require('../controllers/mecanicoController')
-
+const productoController = require('../controllers/productoController')
+const serviceController = require('../controllers/servicioController')
 const express = require('express'),
     router = express.Router(),
     pool = require('../database'),
@@ -93,5 +94,21 @@ router.get('/mecanico', mecanicoController.getRows)
 router.post('/mecanico', mecanicoController.guardarMecanico)
 
 router.delete('/mecanico/:id', mecanicoController.deleteMecanico)
+
+
+//Productos
+
+router.get("/producto", productoController.getProducts)
+
+router.post('/producto', productoController.guardarProducto)
+
+router.delete('/producto/:id', productoController.deleteProducto)
+
+//Servicios
+
+router.get('/servicio', serviceController.getRows)
+
+router.post('/servicio', serviceController.guardarServicio)
+
 module.exports = router
 

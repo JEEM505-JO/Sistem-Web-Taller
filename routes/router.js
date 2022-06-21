@@ -21,14 +21,5 @@ const express = require('express'),
         res.render('layouts/falla.hbs', { title: 'Taller Hno Flores | Fallas'})
 
     })
-
-    router.get('/producto', (req, res)=> {
-        res.render('layouts/producto.hbs', { title: 'Taller Hno Flores | Producto'})
-    }) 
-
-    router.get('/servicio',( req, res ) =>{ 
-        res.render( 'layouts/servicio.hbs', { title: 'Taller Hno Flores | Servicio'})
-    })
-
     
 module.exports = router

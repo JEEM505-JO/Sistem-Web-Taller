@@ -68,7 +68,7 @@ const mecanicoController = {
             alertMessage : `No se ha podido eliminar ha este mecanico debido a que hay una orden de la cual esta encargado: La orden Asignada es ${asignacionorden[0].IdOrdAsignada} encargado: ${asignacionorden[0].IDMecanico}`,
             icon : 'error',
             showConfirmButton: true,
-            timer: 1500
+            timer: false
           }).end()
           next()
         }

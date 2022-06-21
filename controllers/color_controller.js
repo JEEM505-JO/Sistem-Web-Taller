@@ -1,4 +1,3 @@
-const async = require('hbs/lib/async')
 const pool = require('../database')
 
 const colorController = {
@@ -17,7 +16,7 @@ const colorController = {
 
     const { NombreColor, foto,id, color} = req.body
     //Modificar
-    if(id != null){
+    if(id){
       const getColor = await pool.query("SELECT * FROM color WHERE CodigoColor = ?", id)
 
       if(getColor.length > 0){

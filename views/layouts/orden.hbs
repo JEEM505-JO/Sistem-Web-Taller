@@ -311,6 +311,7 @@
       $inputFechaIn.value = null
       $inputFechaOut.value = null
     }
+
   </script>
   <!-- jQuery -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -395,10 +396,31 @@
         format: 'L'
       });
 
-      //Date and time picker
-      $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
 
-      $('#data2').datetimepicker({ icons: { time: 'far fa-clock' } });
+      //Date and time picker
+      $('#reservationdatetime').datetimepicker(
+        { 
+          minDate: new Date(),
+          format: 'YYYY-MM-DD hh:mm A' ,
+          icons: { 
+            time: 'far fa-clock'
+           }
+       })
+
+      $('#data2').datetimepicker({ 
+          format: 'YYYY-MM-DD hh:mm A' ,
+          icons: { 
+            time: 'far fa-clock'
+           } 
+        })
+
+       $("#reservationdatetime").on("change.datetimepicker", function (e) {
+            $('#data2').datetimepicker('minDate', e.date);
+        });
+        $("#data2").on("change.datetimepicker", function (e) {
+            $('#reservationdatetime').datetimepicker('maxDate', e.date);
+        });
+
       //Date range picker
       $('#reservation').daterangepicker()
       //Date range picker with time picker
